@@ -24,12 +24,12 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
 	{
 		id: 1,
-		name: "Sayan Chatterjee",
-		position: "Chief Financial Officer",
+		name: "Gouranga Mondal",
+		position: "CEO",
 		image:
-			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745923588/Sayan_htmu0i.jpg",
+			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745923587/IMG_20250422_111404_td3zba.jpg",
 		testimonial:
-			"Handling finance at Bengal Bits is about more than numbers—it's about enabling innovation through strategic investments.",
+			"As the CEO, I take pride in leading a visionary team dedicated to shaping the future of robotics and AI with integrity.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
@@ -38,25 +38,26 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 2,
-		name: "Suryadyuti Adak",
-		position: "Chief Technical Officer",
+		name: "Arup Banerjee",
+		position: "Chief Technical Officer & Student Mentor",
 		image:
-			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745923588/Surya_j7j4mz.png",
+			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745923586/arup_dclzth.jpg",
 		testimonial:
 			"At Bengal Bits, our focus on technical excellence drives innovative solutions that redefine what's possible in automation.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
+			twitter: "https://twitter.com",
 		},
 	},
 	{
 		id: 3,
-		name: "Gouranga Mondal",
-		position: "CEO",
+		name: "Pritam Panja",
+		position: "Chief Technical Officer & Web Developer",
 		image:
-			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745923587/IMG_20250422_111404_td3zba.jpg",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773239052/pp2_k5yc9q.jpg",
 		testimonial:
-			"As the CEO, I take pride in leading a visionary team dedicated to shaping the future of robotics and AI with integrity.",
+			"Leading the technical vision and empowering our team to build innovative and meaningful solutions is what drives me every day.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
@@ -79,12 +80,12 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 5,
-		name: "Arup Banerjee",
-		position: "Chief Technical Officer",
+		name: "Samapti Gun",
+		position: "Student Mentor",
 		image:
-			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745923586/arup_dclzth.jpg",
+			"",
 		testimonial:
-			"At Bengal Bits, our focus on technical excellence drives innovative solutions that redefine what's possible in automation.",
+			"Helping students learn, explore, and grow through practical knowledge is what makes teaching truly rewarding.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
@@ -93,12 +94,12 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 6,
-		name: "Pritam Panja",
-		position: "Chief Technical Officer",
+		name: "Rittik Singh",
+		position: "Management Head",
 		image:
-			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745924937/WhatsApp_Image_2025-04-23_at_15.18.32_6bdc5d28_i2y7rs.jpg",
+			"",
 		testimonial:
-			"At Bengal Bits, our focus on technical excellence drives innovative solutions that redefine what's possible in automation.",
+			"Ensuring smooth coordination and efficient management allows our team to focus on delivering the best learning experience for students.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
@@ -107,12 +108,12 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 7,
-		name: "Sreyasi Bodhak",
-		position: "Product Manager",
+		name: "Sachi Riya",
+		position: "Student Mentor",
 		image:
-			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745924952/Shreoshi_saxgss.jpg",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773238217/SR_alqv1k.jpg",
 		testimonial:
-			"Product leadership here means turning ideas into impactful realities. It's exciting to guide innovations from concept to market.",
+			"Our goal is to support students, encourage curiosity, and help them build skills that shape their future.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
@@ -121,12 +122,12 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 8,
-		name: "Kaji Azad Ali",
-		position: "Web Developer",
+		name: "Kriti Gupta",
+		position: "Student Mentor",
 		image:
-			"https://res.cloudinary.com/dncj7tesy/image/upload/v1745958227/new_pic_1_iypo4p.jpg",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773238433/KG_xqi732.jpg",
 		testimonial:
-			"Azad is an exceptional web developer with a sharp eye for detail and a deep understanding of modern web technologies. His ability to transform ideas into fully functional, responsive applications is truly impressive.",
+			"Supporting students in their learning journey and watching them achieve their goals is incredibly inspiring.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
