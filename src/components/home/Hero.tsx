@@ -99,10 +99,10 @@ const Hero: React.FC = () => {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYQLyKjoy915H8-6begJRTtekw5iGABouWtREsin0-9ZvhCA/viewform" target="_blank" rel="noreferrer">
-                            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">Register Now</Button>
+                            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">Student Enrollment Form</Button>
                         </a>
-                        <a href="#contact">
-                            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">Contact Us</Button>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYQLyKjoy915H8-6begJRTtekw5iGABouWtREsin0-9ZvhCA/viewform" target="_blank" rel="noreferrer">
+                            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">School Enrollment Form</Button>
                         </a>
                     </div>
                 </div>
