@@ -83,7 +83,7 @@ const teamMembers: TeamMember[] = [
 		name: "Samapti Gun",
 		position: "Student Mentor",
 		image:
-			"",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773663415/SG_c3yhbf.jpg",
 		testimonial:
 			"Helping students learn, explore, and grow through practical knowledge is what makes teaching truly rewarding.",
 		social: {
@@ -97,7 +97,7 @@ const teamMembers: TeamMember[] = [
 		name: "Rittik Singh",
 		position: "Management Head",
 		image:
-			"",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773663258/RS_uyx5ts.jpg",
 		testimonial:
 			"Ensuring smooth coordination and efficient management allows our team to focus on delivering the best learning experience for students.",
 		social: {
@@ -128,6 +128,20 @@ const teamMembers: TeamMember[] = [
 			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773238433/KG_xqi732.jpg",
 		testimonial:
 			"Supporting students in their learning journey and watching them achieve their goals is incredibly inspiring.",
+		social: {
+			github: "https://github.com",
+			linkedin: "https://linkedin.com",
+			twitter: "https://twitter.com",
+		},
+	},
+	{
+		id: 9,
+		name: "Shreyoshi Bodhak",
+		position: "Course Designer",
+		image:
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773731486/SB_wmajlz.jpg",
+		testimonial:
+			"Helping students learn, explore, and grow through practical knowledge is what makes teaching truly rewarding.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
