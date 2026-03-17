@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSqRQe3P7xY9lPg8iN_Fk0z20sYK-Il7ETX6VZMSP2GwGWZg/viewform" target="_blank" rel="noreferrer">
                             <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">Student Enrollment Form</Button>
                         </a>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYQLyKjoy915H8-6begJRTtekw5iGABouWtREsin0-9ZvhCA/viewform" target="_blank" rel="noreferrer">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSqRQe3P7xY9lPg8iN_Fk0z20sYK-Il7ETX6VZMSP2GwGWZg/viewform" target="_blank" rel="noreferrer">
                             <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">School Enrollment Form</Button>
                         </a>
                     </div>
