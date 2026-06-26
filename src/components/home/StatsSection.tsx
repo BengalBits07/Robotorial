@@ -71,8 +71,8 @@ export default function StatsSection() {
     <section style={styles.section}>
       <Counter target={visitors} label="Website Visitors" isVisitorCounter={true} />
       {/* Added isVisitorCounter={false} explicitly to satisfy the 'required' error if you prefer */}
-      <Counter target={16} label="Students Enrolled" isVisitorCounter={false} />
-      <Counter target={8} label="Teachers" isVisitorCounter={false} />
+      <Counter target={100} label="Students Enrolled" isVisitorCounter={false} />
+      <Counter target={15} label="Teachers" isVisitorCounter={false} />
     </section>
   );
 }
