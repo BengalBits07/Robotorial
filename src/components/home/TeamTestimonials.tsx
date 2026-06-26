@@ -67,9 +67,9 @@ const teamMembers: TeamMember[] = [
 	{
 		id: 4,
 		name: "Tanisha Seal",
-		position: "Customer Service Representative",
+		position: "Student Mentor",
 		image:
-			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745923587/WhatsApp_Image_2025-04-22_at_18.14.00_12992809_v923vj.jpg",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766846/Tanisha_qixo9z.jpg",
 		testimonial:
 			"Supporting our customers is at the heart of what we do. Ensuring their satisfaction fuels our growth and success.",
 		social: {
@@ -136,6 +136,48 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 9,
+		name: "Prithwi Biswas",
+		position: "Management Head",
+		image:
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766124/PB_vsadrw.jpg",
+		testimonial:
+			"Ensures every Robotorial initiative is planned, coordinated, and executed smoothly from concept to completion.",
+		social: {
+			github: "https://github.com",
+			linkedin: "https://linkedin.com",
+			twitter: "https://twitter.com",
+		},
+	},
+	{
+		id: 10,
+		name: "Shadma Yunus",
+		position: "Student Mentor",
+		image:
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766133/SY_wlz89v.jpg",
+		testimonial:
+			"Guides and inspires students by transforming complex technology concepts into practical learning experiences.",
+		social: {
+			github: "https://github.com",
+			linkedin: "https://linkedin.com",
+			twitter: "https://twitter.com",
+		},
+	},
+	{
+		id: 11,
+		name: "Tanya Singh",
+		position: "Social Media Lead",
+		image:
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766851/TS_gq77g1.jpg",
+		testimonial:
+			"Builds Robotorial's digital presence by engaging the community and showcasing our innovations to a wider audience.",
+		social: {
+			github: "https://github.com",
+			linkedin: "https://linkedin.com",
+			twitter: "https://twitter.com",
+		},
+	},
+	{
+		id: 12,
 		name: "Shreyoshi Bodhak",
 		position: "Course Designer",
 		image:
