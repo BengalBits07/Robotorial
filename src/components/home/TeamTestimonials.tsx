@@ -83,7 +83,7 @@ const teamMembers: TeamMember[] = [
 		name: "Samapti Gun",
 		position: "Student Mentor",
 		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773663415/SG_c3yhbf.jpg",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773663521/SG_pj0srs.jpg",
 		testimonial:
 			"Helping students learn, explore, and grow through practical knowledge is what makes teaching truly rewarding.",
 		social: {
