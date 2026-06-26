@@ -1,271 +1,529 @@
-import React, { useState } from "react";
-import { Button } from "../ui/Button";
-import { Card, CardHeader, CardContent } from "../ui/Card";
-import {
-	Send,
-	Mail,
-	Phone,
-	MapPin,
-	Facebook,
-	Twitter,
-	Instagram,
-} from "lucide-react";
-import RobotHelper from "./RobotHelper";
+import { useState } from "react";
 
-const Contact: React.FC = () => {
-	const [formState, setFormState] = useState({
-		name: "",
-		email: "",
-		message: "",
-	});
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [isSubmitted, setIsSubmitted] = useState(false);
+interface FormStatus {
+  type: "idle" | "sending" | "success" | "error";
+  message: string;
+}
 
-	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
-		const { name, value } = e.target;
-		setFormState((prev) => ({ ...prev, [name]: value }));
-	};
+export default function ContactSection() {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<FormStatus>({
+    type: "idle",
+    message: "",
+  });
 
-	const handleSubmit = async (event: React.FormEvent) => {
-		event.preventDefault();
-		setIsSubmitting(true);
-		const formData = new FormData();
-		formData.append("access_key", import.meta.env.VITE_BASE_WEB3_EMAIL_KEY!);
-		formData.append("name", formState.name);
-		formData.append("email", formState.email);
-		formData.append("message", formState.message);
-		formData.append("subject", "New Contact Form Submission");
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-		const response = await fetch("https://api.web3forms.com/submit", {
-			method: "POST",
-			body: formData,
-		});
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus({ type: "error", message: "Please fill in all fields." });
+      return;
+    }
 
-		const data = await response.json();
-		console.log(data);
-		if (data.success) {
-			setIsSubmitting(false);
-			setIsSubmitted(true);
-			setFormState({ name: "", email: "", message: "" });
-			(event.target as HTMLFormElement).reset();
-			setTimeout(() => setIsSubmitted(false), 5000);
-		} else {
-			setIsSubmitting(false);
-		}
-	};
+    setStatus({ type: "sending", message: "Sending..." });
 
-	return (
-		<section id="contact" className="py-20 relative overflow-hidden">
-			<div className="absolute inset-0 circuit-bg opacity-50"></div>
-			<div className="container mx-auto px-4 relative z-10">
-				<h2 className="text-4xl font-bold text-center mb-4 text-gradient">
-					Get In Touch
-				</h2>
-				<p className="text-[rgb(var(--foreground))]/70 text-center mb-12 max-w-2xl mx-auto">
-					Have questions about our robotics solutions? Reach out to our team of
-					experts.
-				</p>
+    const subject = encodeURIComponent(
+      `Contact Form Message from ${formData.name}`
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:robotorial.bb@gmail.com?subject=${subject}&body=${body}`;
 
-				<RobotHelper
-					position="left"
-					variant="large"
-					className="bottom-20 left-10 hidden lg:block"
-					message="I'd be happy to help answer your questions!"
-				/>
+    window.location.href = mailtoLink;
 
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-					<Card className="glass overflow-hidden fade-in-up">
-						<CardHeader className="bg-gradient-to-r from-[rgba(var(--primary),0.1)] to-[rgba(var(--secondary),0.1)] p-6">
-							<h3 className="text-2xl font-bold">Contact Information</h3>
-							<p className="text-[rgb(var(--foreground))]/70">
-								Our team is here to help you
-							</p>
-						</CardHeader>
+    setStatus({
+      type: "success",
+      message: "Your email client has been opened. Please send the email.",
+    });
 
-						<CardContent className="p-6">
-							<div className="space-y-6">
-								<div className="flex items-center gap-4">
-									<div className="p-3 rounded-full bg-[rgba(var(--primary),0.1)] text-[rgb(var(--primary))]">
-										<Mail className="h-5 w-5" />
-									</div>
-									<div>
-										<h4 className="text-sm font-medium text-[rgb(var(--foreground))]/50">
-											Email
-										</h4>
-										<p className="text-lg">robotorial.bb@gmail.com</p>
-									</div>
-								</div>
+    setFormData({ name: "", email: "", message: "" });
+    setTimeout(() => setStatus({ type: "idle", message: "" }), 5000);
+  };
 
-								<div className="flex items-center gap-4">
-									<div className="p-3 rounded-full bg-[rgba(var(--secondary),0.1)] text-[rgb(var(--secondary))]">
-										<Phone className="h-5 w-5" />
-									</div>
-									<div>
-										<h4 className="text-sm font-medium text-[rgb(var(--foreground))]/50">
-											Phone
-										</h4>
-										<p className="text-lg">+91 86702 04449</p>
-									</div>
-								</div>
+  return (
+    <div style={styles.page}>
+      <style>{cssAnimations}</style>
 
-								<div className="flex items-center gap-4">
-									<div className="p-3 rounded-full bg-[rgba(var(--accent),0.1)] text-[rgb(var(--accent))]">
-										<MapPin className="h-5 w-5" />
-									</div>
-									<div>
-										<h4 className="text-sm font-medium text-[rgb(var(--foreground))]/50">
-											Office
-										</h4>
-										<p className="text-lg">
-											Nischintapur, Budge Budge, Kolkata - 700 137, West Bengal,
-											India
-										</p>
-									</div>
-								</div>
-							</div>
+      {/* Cards row */}
+      <div style={styles.wrapper}>
+        {/* Left Panel */}
+        <div style={styles.card}>
+          <div style={styles.cardHeader}>
+            <h2 style={styles.cardTitle}>Contact Information</h2>
+            <p style={styles.cardSubtitle}>Our team is here to help you</p>
+          </div>
 
-							<div className="mt-10">
-								<h4 className="text-xl font-bold mb-4">Connect With Us</h4>
-								<div className="flex gap-4">
-									<a
-										href="https://www.facebook.com/profile.php?id=61575534572767"
-										className="p-3 rounded-full glass hover:bg-[rgb(var(--primary))]/10 transition-colors flex items-center gap-2 text-[rgb(var(--foreground))]"
-										target="_blank"
-									>
-										<Facebook className="h-5 w-5" />
-										<span>Facebook</span>
-									</a>
-									<a
-										href="https://www.instagram.com/bengal_bits01/"
-										target="_blank"
-										className="p-3 rounded-full glass hover:bg-[rgb(var(--primary))]/10 transition-colors flex items-center gap-2 text-[rgb(var(--foreground))]"
-									>
-										<Instagram className="h-5 w-5" />
-										<span>Instagram</span>
-									</a>
-								</div>
-							</div>
-						</CardContent>
-					</Card>
+          <div style={styles.cardBody}>
+            <div style={styles.contactItems}>
+              <ContactItem
+                icon={<EmailIcon />}
+                iconBg="linear-gradient(135deg, #3b4fd8, #5a6ff0)"
+                label="Email"
+                value="robotorial.bb@gmail.com"
+              />
+              <ContactItem
+                icon={<PhoneIcon />}
+                iconBg="linear-gradient(135deg, #6a3dd8, #9b6fef)"
+                label="Phone"
+                value="+91 89021 59596"
+              />
+              <ContactItem
+                icon={<LocationIcon />}
+                iconBg="linear-gradient(135deg, #c0392b, #e74c5e)"
+                label="Office"
+                value="Nischintapur, Budge Budge, Kolkata - 700 137, West Bengal, India"
+              />
+            </div>
 
-					<Card className="glass slide-in-right">
-						<CardContent className="p-6">
-							<h3 className="text-2xl font-bold mb-6">Send us a message</h3>
+            <div style={styles.socialSection}>
+              <h3 style={styles.socialTitle}>Connect With Us</h3>
+              <div style={styles.socialButtons}>
+                <SocialButton icon={<FacebookIcon />} label="Facebook" />
+                <SocialButton icon={<InstagramIcon />} label="Instagram" />
+              </div>
+            </div>
+          </div>
+        </div>
 
-							{isSubmitted ? (
-								<div className="text-center py-10">
-									<div className="mb-4 text-[rgb(var(--success))] bg-[rgba(var(--success),0.1)] p-3 rounded-full inline-block">
-										<Send className="h-10 w-10" />
-									</div>
-									<h4 className="text-xl font-bold mb-2">Message Sent!</h4>
-									<p className="text-[rgb(var(--foreground))]/70">
-										Thank you for reaching out. We'll get back to you shortly.
-									</p>
-								</div>
-							) : (
-								<form onSubmit={handleSubmit} className="space-y-6">
-									<div>
-										<label
-											htmlFor="name"
-											className="block text-sm font-medium mb-2"
-										>
-											Name
-										</label>
-										<input
-											id="name"
-											name="name"
-											type="text"
-											required
-											value={formState.name}
-											onChange={handleChange}
-											className="w-full glass bg-[rgba(var(--foreground),0.05)] border-[rgba(var(--foreground),0.1)] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--primary))]"
-										/>
-									</div>
+        {/* Right Panel */}
+        <div style={{ ...styles.card, ...styles.rightCard }}>
+          <h2 style={styles.formTitle}>Send us a message</h2>
 
-									<div>
-										<label
-											htmlFor="email"
-											className="block text-sm font-medium mb-2"
-										>
-											Email
-										</label>
-										<input
-											id="email"
-											name="email"
-											type="email"
-											required
-											value={formState.email}
-											onChange={handleChange}
-											className="w-full glass bg-[rgba(var(--foreground),0.05)] border-[rgba(var(--foreground),0.1)] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--primary))]"
-										/>
-									</div>
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Name</label>
+            <input
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              style={styles.input}
+              onFocus={(e) =>
+                (e.currentTarget.style.borderColor = "rgba(99,102,241,0.6)")
+              }
+              onBlur={(e) =>
+                (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")
+              }
+            />
+          </div>
 
-									<div>
-										<label
-											htmlFor="message"
-											className="block text-sm font-medium mb-2"
-										>
-											Message
-										</label>
-										<textarea
-											id="message"
-											name="message"
-											rows={5}
-											required
-											value={formState.message}
-											onChange={handleChange}
-											className="w-full glass bg-[rgba(var(--foreground),0.05)] border-[rgba(var(--foreground),0.1)] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[rgb(var(--primary))]"
-										></textarea>
-									</div>
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Email</label>
+            <input
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              style={styles.input}
+              onFocus={(e) =>
+                (e.currentTarget.style.borderColor = "rgba(99,102,241,0.6)")
+              }
+              onBlur={(e) =>
+                (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")
+              }
+            />
+          </div>
 
-									<Button
-										type="submit"
-										fullWidth
-										size="lg"
-										disabled={isSubmitting}
-										className="relative overflow-hidden"
-									>
-										{isSubmitting ? (
-											<span className="flex items-center">
-												<svg
-													className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-													xmlns="http://www.w3.org/2000/svg"
-													fill="none"
-													viewBox="0 0 24 24"
-												>
-													<circle
-														className="opacity-25"
-														cx="12"
-														cy="12"
-														r="10"
-														stroke="currentColor"
-														strokeWidth="4"
-													></circle>
-													<path
-														className="opacity-75"
-														fill="currentColor"
-														d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-													></path>
-												</svg>
-												Sending...
-											</span>
-										) : (
-											<span className="flex items-center justify-center">
-												Send Message <Send className="ml-2 h-4 w-4" />
-											</span>
-										)}
-									</Button>
-								</form>
-							)}
-						</CardContent>
-					</Card>
-				</div>
-			</div>
-		</section>
-	);
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Message</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              style={styles.textarea}
+              onFocus={(e) =>
+                (e.currentTarget.style.borderColor = "rgba(99,102,241,0.6)")
+              }
+              onBlur={(e) =>
+                (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")
+              }
+            />
+          </div>
+
+          {status.message && (
+            <p
+              style={{
+                ...styles.statusMsg,
+                color:
+                  status.type === "error"
+                    ? "#f87171"
+                    : status.type === "success"
+                    ? "#4ade80"
+                    : "#a5b4fc",
+              }}
+            >
+              {status.message}
+            </p>
+          )}
+
+          <button
+            onClick={handleSubmit}
+            disabled={status.type === "sending"}
+            style={styles.sendButton}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = "#5c6cf2")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "#4f5de4")
+            }
+          >
+            {status.type === "sending" ? "Opening..." : "Send Message"}
+            <SendIcon />
+          </button>
+        </div>
+      </div>
+
+      {/* Robot widget — centered below cards */}
+      <div style={styles.robotRow}>
+        <RobotWidget />
+        <div style={styles.robotBubble}>
+          I'd be happy to help answer your questions!
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Sub-components ─────────────────────────────────────────── */
+
+function ContactItem({
+  icon,
+  iconBg,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  iconBg: string;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div style={styles.contactRow}>
+      <div style={{ ...styles.iconBox, background: iconBg }}>{icon}</div>
+      <div>
+        <p style={styles.contactLabel}>{label}</p>
+        <p style={styles.contactValue}>{value}</p>
+      </div>
+    </div>
+  );
+}
+
+function SocialButton({
+  icon,
+  label,
+}: {
+  icon: React.ReactNode;
+  label: string;
+}) {
+  return (
+    <button
+      style={styles.socialBtn}
+      onMouseEnter={(e) =>
+        (e.currentTarget.style.background = "rgba(255,255,255,0.12)")
+      }
+      onMouseLeave={(e) =>
+        (e.currentTarget.style.background = "rgba(255,255,255,0.06)")
+      }
+    >
+      {icon}
+      <span>{label}</span>
+    </button>
+  );
+}
+
+function RobotWidget() {
+  return (
+    <svg width="90" height="48" viewBox="0 0 90 48" fill="none" style={{ display: "block" }}>
+      <rect x="4" y="14" width="82" height="26" rx="13" fill="#1e2035" stroke="#2d3055" strokeWidth="1.5" />
+      <circle cx="30" cy="27" r="5" fill="#4f6ef5" opacity="0.9" />
+      <circle cx="30" cy="27" r="3" fill="#7090ff" />
+      <circle cx="58" cy="27" r="5" fill="#4f6ef5" opacity="0.9" />
+      <circle cx="58" cy="27" r="3" fill="#7090ff" />
+      <rect x="38" y="24" width="14" height="6" rx="3" fill="#e84057" />
+      <line x1="44" y1="14" x2="44" y2="8" stroke="#e84057" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="44" cy="6" r="3" fill="#e84057" />
+      <line x1="4" y1="27" x2="0" y2="27" stroke="#2d3055" strokeWidth="2" strokeLinecap="round" />
+      <line x1="86" y1="27" x2="90" y2="27" stroke="#2d3055" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* ── SVG Icons ──────────────────────────────────────────────── */
+const EmailIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
+const PhoneIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+
+const LocationIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+
+const FacebookIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
+
+const InstagramIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
+
+const SendIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: 8 }}>
+    <path d="m22 2-7 20-4-9-9-4Z" />
+    <path d="M22 2 11 13" />
+  </svg>
+);
+
+/* ── Styles ─────────────────────────────────────────────────── */
+
+const styles: Record<string, React.CSSProperties> = {
+  page: {
+    minHeight: "100vh",
+    background: "#0d0f1a",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "48px 24px 48px",
+    fontFamily: "'Space Grotesk', 'Inter', system-ui, sans-serif",
+    position: "relative",
+  },
+  wrapper: {
+    display: "flex",
+    gap: "24px",
+    maxWidth: "1000px",
+    width: "100%",
+    alignItems: "stretch",   // <-- both cards same height
+  },
+  /* Shared card base */
+  card: {
+    flex: 1,
+    background: "#161827",
+    borderRadius: "16px",
+    border: "1px solid rgba(255,255,255,0.06)",
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+  },
+  /* Right card overrides */
+  rightCard: {
+    padding: "32px 28px",
+  },
+  cardHeader: {
+    background: "#1e2240",
+    padding: "28px 28px 24px",
+    borderBottom: "1px solid rgba(255,255,255,0.06)",
+  },
+  cardTitle: {
+    margin: 0,
+    fontSize: "20px",
+    fontWeight: 700,
+    color: "#ffffff",
+    fontFamily: "'Space Grotesk', sans-serif",
+    letterSpacing: "-0.01em",
+  },
+  cardSubtitle: {
+    margin: "6px 0 0",
+    fontSize: "13.5px",
+    color: "rgba(255,255,255,0.45)",
+    fontFamily: "'Inter', sans-serif",
+  },
+  cardBody: {
+    padding: "24px 28px 28px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "24px",
+    flex: 1,
+  },
+  contactItems: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "22px",
+  },
+  contactRow: {
+    display: "flex",
+    alignItems: "flex-start",
+    gap: "16px",
+  },
+  iconBox: {
+    width: "44px",
+    height: "44px",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  },
+  contactLabel: {
+    margin: 0,
+    fontSize: "11px",
+    fontWeight: 600,
+    color: "rgba(255,255,255,0.45)",
+    textTransform: "uppercase" as const,
+    letterSpacing: "0.08em",
+    fontFamily: "'Inter', sans-serif",
+  },
+  contactValue: {
+    margin: "4px 0 0",
+    fontSize: "14px",
+    color: "rgba(255,255,255,0.85)",
+    lineHeight: "1.55",
+    fontFamily: "'Inter', sans-serif",
+  },
+  socialSection: {
+    marginTop: "auto",
+  },
+  socialTitle: {
+    margin: "0 0 12px",
+    fontSize: "15px",
+    fontWeight: 700,
+    color: "#ffffff",
+    fontFamily: "'Space Grotesk', sans-serif",
+  },
+  socialButtons: {
+    display: "flex",
+    gap: "10px",
+  },
+  socialBtn: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    padding: "9px 18px",
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    borderRadius: "50px",
+    color: "rgba(255,255,255,0.8)",
+    fontSize: "13.5px",
+    fontWeight: 500,
+    cursor: "pointer",
+    transition: "background 0.2s",
+    fontFamily: "'Inter', sans-serif",
+  },
+  formTitle: {
+    margin: "0 0 24px",
+    fontSize: "20px",
+    fontWeight: 700,
+    color: "#ffffff",
+    fontFamily: "'Space Grotesk', sans-serif",
+    letterSpacing: "-0.01em",
+  },
+  formGroup: {
+    marginBottom: "16px",
+  },
+  label: {
+    display: "block",
+    marginBottom: "8px",
+    fontSize: "13.5px",
+    fontWeight: 500,
+    color: "rgba(255,255,255,0.75)",
+    fontFamily: "'Inter', sans-serif",
+  },
+  input: {
+    width: "100%",
+    padding: "12px 14px",
+    background: "#1e2035",
+    border: "1px solid rgba(255,255,255,0.06)",
+    borderRadius: "8px",
+    color: "#ffffff",
+    fontSize: "14px",
+    outline: "none",
+    transition: "border-color 0.2s",
+    boxSizing: "border-box" as const,
+    fontFamily: "'Inter', sans-serif",
+  },
+  textarea: {
+    width: "100%",
+    padding: "12px 14px",
+    background: "#1e2035",
+    border: "1px solid rgba(255,255,255,0.06)",
+    borderRadius: "8px",
+    color: "#ffffff",
+    fontSize: "14px",
+    outline: "none",
+    resize: "vertical" as const,
+    minHeight: "140px",
+    transition: "border-color 0.2s",
+    boxSizing: "border-box" as const,
+    fontFamily: "'Inter', sans-serif",
+  },
+  sendButton: {
+    width: "100%",
+    padding: "14px",
+    marginTop: "8px",
+    background: "#4f5de4",
+    border: "none",
+    borderRadius: "8px",
+    color: "#ffffff",
+    fontSize: "15px",
+    fontWeight: 600,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "background 0.2s",
+    letterSpacing: "0.01em",
+    fontFamily: "'Space Grotesk', sans-serif",
+  },
+  statusMsg: {
+    margin: "0 0 10px",
+    fontSize: "13px",
+    fontFamily: "'Inter', sans-serif",
+  },
+  /* Robot row — centered below the two cards */
+  robotRow: {
+    position: "absolute",
+    left: "40px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+  },
+  robotBubble: {
+    background: "#1e2035",
+    border: "1px solid rgba(255,255,255,0.08)",
+    borderRadius: "8px",
+    padding: "8px 14px",
+    fontSize: "12.5px",
+    color: "rgba(255,255,255,0.7)",
+    maxWidth: "100px",
+    lineHeight: "1.45",
+    fontFamily: "'Inter', sans-serif",
+  },
 };
 
-export default Contact;
+const cssAnimations = `
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+  input::placeholder, textarea::placeholder { color: transparent; }
+  input, textarea { color-scheme: dark; }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+`;
