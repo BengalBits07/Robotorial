@@ -3,6 +3,29 @@ import AnimateOnScroll from "../AnimateOnScroll";
 
 const workshopImages = [
     {
+        src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1786513375/ws3_m6a9df.jpg"
+        // title: "Hands-on Training",
+    },
+    {
+        src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1786513385/ws5_nakyms.jpg"
+        // title: "Hands-on Training",
+    },
+    {
+        src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1786513365/ws1_a0ifqk.jpg"
+        // title: "Hands-on Training",
+    },
+    {
+        src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1786513371/ws2_q8jwhh.jpg"
+        // title: "Hands-on Training",
+    },
+    {
+        src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1786513380/ws4_ltgsh5.jpg"
+        // title: "Hands-on Training",
+    },
+];
+
+const classImages = [
+    {
         src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1768666771/WhatsApp_Image_2026-01-17_at_9.46.34_PM_glqiml.jpg"
         // title: "Workshop Session",
     },
@@ -10,13 +33,10 @@ const workshopImages = [
         src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1768674124/img2_lrkvp6.jpg"
         // title: "Hands-on Training",
     },
-	{
+    {
         src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1768674311/img3_hrn0xf.jpg"
         // title: "Hands-on Training",
     },
-];
-
-const classImages = [
     {
         src: "https://res.cloudinary.com/dcxadfbih/image/upload/v1768675188/img5_lwzaus.jpg"
         // title: "Classroom Moment",
