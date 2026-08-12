@@ -43,6 +43,11 @@ const TABS: Tab[] = [
         imageUrl: "https://res.cloudinary.com/dcxadfbih/image/upload/v1780759554/PE3_s0dufn.png",
         title: "Past Event 3",
       },
+      {
+        id: 4,
+        imageUrl: "https://res.cloudinary.com/dcxadfbih/image/upload/v1780759568/SummerCamp_xr2uww.jpg",
+        title: "Summer Camp",
+      },
     ],
   },
   {
@@ -52,11 +57,7 @@ const TABS: Tab[] = [
     color: "#34d399",
     glow: "rgba(52,211,153,0.35)",
     banners: [
-      {
-        id: 1,
-        imageUrl: "https://res.cloudinary.com/dcxadfbih/image/upload/v1780759568/SummerCamp_xr2uww.jpg",
-        title: "Summer Camp",
-      },
+      
     ],
   },
   {
