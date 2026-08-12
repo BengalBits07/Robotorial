@@ -94,20 +94,6 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 6,
-		name: "Rittik Singh",
-		position: "Management Head",
-		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773663258/RS_uyx5ts.jpg",
-		testimonial:
-			"Ensuring smooth coordination and efficient management allows our team to focus on delivering the best learning experience for students.",
-		social: {
-			github: "https://github.com",
-			linkedin: "https://linkedin.com",
-			twitter: "https://twitter.com",
-		},
-	},
-	{
-		id: 7,
 		name: "Sachi Riya",
 		position: "Student Mentor",
 		image:
@@ -121,7 +107,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 8,
+		id: 7,
 		name: "Kriti Gupta",
 		position: "Student Mentor",
 		image:
@@ -135,7 +121,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 9,
+		id: 8,
 		name: "Prithwi Biswas",
 		position: "Management Head",
 		image:
@@ -149,21 +135,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 10,
-		name: "Shadma Yunus",
-		position: "Student Mentor",
-		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766133/SY_wlz89v.jpg",
-		testimonial:
-			"Guides and inspires students by transforming complex technology concepts into practical learning experiences.",
-		social: {
-			github: "https://github.com",
-			linkedin: "https://linkedin.com",
-			twitter: "https://twitter.com",
-		},
-	},
-	{
-		id: 11,
+		id: 9,
 		name: "Tanya Singh",
 		position: "Social Media Lead",
 		image:
@@ -177,7 +149,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 12,
+		id: 10,
 		name: "Shreyoshi Bodhak",
 		position: "Course Designer",
 		image:
