@@ -51,19 +51,19 @@ export default function StatsSection() {
     if (isFetched.current) return;
     isFetched.current = true;
 
-    // Stable API for Robotorial visitors
-    const apiURL = "https://api.counterapi.dev/v1/robotorial_official/visits/up";
+    // Free counter API — no API key required
+    const apiURL = "https://countapi.mileshilliard.com/api/v1/hit/robotorial-official-visits";
 
     fetch(apiURL)
       .then((res) => res.json())
       .then((data) => {
-        if (data && data.count) {
-          setVisitors(data.count);
+        if (data && typeof data.value === "number") {
+          setVisitors(data.value);
         }
       })
       .catch((err) => {
         console.error("Counter Error:", err);
-        setVisitors(1250); 
+        setVisitors(1250);
       });
   }, []);
 
@@ -72,7 +72,7 @@ export default function StatsSection() {
       <Counter target={visitors} label="Website Visitors" isVisitorCounter={true} />
       {/* Added isVisitorCounter={false} explicitly to satisfy the 'required' error if you prefer */}
       <Counter target={100} label="Students Enrolled" isVisitorCounter={false} />
-      <Counter target={15} label="Teachers" isVisitorCounter={false} />
+      <Counter target={10} label="Teachers" isVisitorCounter={false} />
     </section>
   );
 }
@@ -82,18 +82,18 @@ const styles: { [key: string]: CSSProperties } = {
   section: {
     display: "flex",
     justifyContent: "center",
-    gap: "60px",
-    padding: "80px 20px",
+    gap: "clamp(20px, 5vw, 60px)",
+    padding: "clamp(40px, 8vw, 80px) 20px",
     background: "#0b1120",
     textAlign: "center",
-    flexWrap: "wrap" as "wrap", // Fixed the 'flexWrap' type error
+    flexWrap: "wrap" as "wrap",
     fontFamily: "sans-serif",
   },
   card: {
-    minWidth: "200px",
+    minWidth: "100px",
   },
   number: {
-    fontSize: "48px",
+    fontSize: "clamp(28px, 6vw, 48px)",
     color: "#3b82f6",
     marginBottom: "10px",
   },
