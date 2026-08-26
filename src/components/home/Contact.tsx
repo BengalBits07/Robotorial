@@ -36,33 +36,52 @@ export default function ContactSection() {
 
     setStatus({ type: "sending", message: "Sending..." });
 
-    const subject = encodeURIComponent(
-      `Contact Form Message from ${formData.name}`
-    );
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    const mailtoLink = `mailto:robotorial.bb@gmail.com?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "4760c023-59ec-443e-9bf4-b436c3bf3079",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Contact Form Message from ${formData.name}`,
+        }),
+      });
 
-    window.location.href = mailtoLink;
+      const result = await response.json();
 
-    setStatus({
-      type: "success",
-      message: "Your email client has been opened. Please send the email.",
-    });
+      if (result.success) {
+        setStatus({
+          type: "success",
+          message: "Message sent successfully! We'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus({
+          type: "error",
+          message: "Failed to send message. Please try again.",
+        });
+      }
+    } catch {
+      setStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    }
 
-    setFormData({ name: "", email: "", message: "" });
     setTimeout(() => setStatus({ type: "idle", message: "" }), 5000);
   };
 
+
   return (
-    <div style={styles.page}>
+    <div id="contact" style={styles.page} className="contact-page">
       <style>{cssAnimations}</style>
 
       {/* Cards row */}
-      <div style={styles.wrapper}>
+      <div style={styles.wrapper} className="contact-wrapper">
         {/* Left Panel */}
-        <div style={styles.card}>
+        <div style={styles.card} className="contact-card">
           <div style={styles.cardHeader}>
             <h2 style={styles.cardTitle}>Contact Information</h2>
             <p style={styles.cardSubtitle}>Our team is here to help you</p>
@@ -93,15 +112,15 @@ export default function ContactSection() {
             <div style={styles.socialSection}>
               <h3 style={styles.socialTitle}>Connect With Us</h3>
               <div style={styles.socialButtons}>
-                <SocialButton icon={<FacebookIcon />} label="Facebook" />
-                <SocialButton icon={<InstagramIcon />} label="Instagram" />
+                <SocialButton icon={<FacebookIcon />} label="Facebook" href="https://www.facebook.com/share/18Smz357TX/" />
+                <SocialButton icon={<InstagramIcon />} label="Instagram" href="https://www.instagram.com/bengalbits.tech/" />
               </div>
             </div>
           </div>
         </div>
 
         {/* Right Panel */}
-        <div style={{ ...styles.card, ...styles.rightCard }}>
+        <div style={{ ...styles.card, ...styles.rightCard }} className="contact-card contact-card-right">
           <h2 style={styles.formTitle}>Send us a message</h2>
 
           <div style={styles.formGroup}>
@@ -187,9 +206,9 @@ export default function ContactSection() {
       </div>
 
       {/* Robot widget — centered below cards */}
-      <div style={styles.robotRow}>
+      <div style={styles.robotRow} className="contact-robot-row">
         <RobotWidget />
-        <div style={styles.robotBubble}>
+        <div style={styles.robotBubble} className="contact-robot-bubble">
           I'd be happy to help answer your questions!
         </div>
       </div>
@@ -224,13 +243,18 @@ function ContactItem({
 function SocialButton({
   icon,
   label,
+  href,
 }: {
   icon: React.ReactNode;
   label: string;
+  href: string;
 }) {
   return (
-    <button
-      style={styles.socialBtn}
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ ...styles.socialBtn, textDecoration: "none" }}
       onMouseEnter={(e) =>
         (e.currentTarget.style.background = "rgba(255,255,255,0.12)")
       }
@@ -240,7 +264,7 @@ function SocialButton({
     >
       {icon}
       <span>{label}</span>
-    </button>
+    </a>
   );
 }
 
@@ -526,4 +550,44 @@ const cssAnimations = `
   input::placeholder, textarea::placeholder { color: transparent; }
   input, textarea { color-scheme: dark; }
   button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* ── Responsive breakpoints ────────────────────────────────── */
+
+  /* Medium screens & tablets (≤1024px) */
+  @media (max-width: 1024px) {
+    .contact-robot-row {
+      display: none !important;
+    }
+    .contact-page {
+      padding: 36px 16px !important;
+    }
+  }
+
+  /* Tablets & small laptops (≤768px) */
+  @media (max-width: 768px) {
+    .contact-wrapper {
+      flex-direction: column !important;
+      gap: 20px !important;
+    }
+    .contact-card {
+      flex: none !important;
+      width: 100% !important;
+    }
+    .contact-card-right {
+      padding: 24px 20px !important;
+    }
+  }
+
+  /* Mobile phones (≤480px) */
+  @media (max-width: 480px) {
+    .contact-page {
+      padding: 24px 10px !important;
+    }
+    .contact-wrapper {
+      gap: 16px !important;
+    }
+    .contact-card-right {
+      padding: 20px 14px !important;
+    }
+  }
 `;
