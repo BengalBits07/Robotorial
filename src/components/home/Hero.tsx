@@ -1,124 +1,246 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Button } from "../ui/Button";
 import RobotHelper from "./RobotHelper";
 import { ChevronDown } from "lucide-react";
 
+const MOBILE_VIDEO =
+	"https://res.cloudinary.com/dncj7tesy/video/upload/q_auto:low/v1745333648/pc65jbshkezy53vi2pz6.mp4";
+const DESKTOP_VIDEO =
+	"https://res.cloudinary.com/dncj7tesy/video/upload/q_auto:low/h_1000,w_2000/v1745923301/heroVideo_gkbyfn.mp4";
+// Cloudinary can generate a poster frame from the video (first frame as jpg)
+const MOBILE_POSTER =
+	"https://res.cloudinary.com/dncj7tesy/video/upload/q_auto:low,so_0/v1745333648/pc65jbshkezy53vi2pz6.jpg";
+const DESKTOP_POSTER =
+	"https://res.cloudinary.com/dncj7tesy/video/upload/q_auto:low,so_0,h_1000,w_2000/v1745923301/heroVideo_gkbyfn.jpg";
+
 const Hero: React.FC = () => {
-    const heroRef = useRef<HTMLElement>(null);
-    const textRef = useRef<HTMLHeadingElement>(null);
+	const heroRef = useRef<HTMLElement>(null);
+	const textRef = useRef<HTMLHeadingElement>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const [isDesktop, setIsDesktop] = useState(true);
+	const [videoPlaying, setVideoPlaying] = useState(false);
 
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            if (!heroRef.current) return;
+	// Detect screen size — only mount the correct video (CSS hidden prevents loading on mobile)
+	useEffect(() => {
+		const mql = window.matchMedia("(min-width: 768px)");
+		setIsDesktop(mql.matches);
 
-            const { clientX, clientY } = e;
-            const { width, height } = heroRef.current.getBoundingClientRect();
+		const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+		mql.addEventListener("change", handler);
+		return () => mql.removeEventListener("change", handler);
+	}, []);
 
-            const x = (clientX / width - 0.5) * 2;
-            const y = (clientY / height - 0.5) * 2;
+	// Force-play helper
+	const forcePlay = useCallback(() => {
+		const video = videoRef.current;
+		if (!video || videoPlaying) return;
 
-            heroRef.current.style.setProperty("--x", `${x * 5}px`);
-            heroRef.current.style.setProperty("--y", `${y * 5}px`);
+		// Ensure muted (some browsers reset it)
+		video.muted = true;
 
-            if (textRef.current) {
-                textRef.current.style.transform = `translate(${x * -10}px, ${y * -10}px)`;
-            }
-        };
+		video.play().then(() => {
+			setVideoPlaying(true);
+		}).catch(() => {
+			// Still blocked — poster image is always visible as fallback
+		});
+	}, [videoPlaying]);
 
-        document.addEventListener("mousemove", handleMouseMove);
-        return () => document.removeEventListener("mousemove", handleMouseMove);
-    }, []);
+	// Attempt autoplay on mount + retry on first user interaction (touch/scroll/click)
+	useEffect(() => {
+		// Try immediately
+		forcePlay();
 
-    const scrollToProjects = () => {
-        document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-    };
+		// Also try when video metadata is ready
+		const video = videoRef.current;
+		if (video) {
+			const onCanPlay = () => forcePlay();
+			video.addEventListener("canplay", onCanPlay);
 
-    return (
-        <section
-            ref={heroRef}
-            id="home"
-            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
-        >
-            {/* Background Video Container */}
-            <div className="absolute inset-0 z-0 w-full h-full">
-                {/* Mobile Video */}
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute w-full h-full object-cover block md:hidden"
-                    poster="https://res.cloudinary.com/dncj7tesy/image/upload/v1745333648/pc65jbshkezy53vi2pz6.jpg"
-                >
-                    <source src="https://res.cloudinary.com/dcxadfbih/video/upload/v1771250084/heroVideo_gkbyfn_uxgod0.mp4" type="video/mp4" />
-                </video>
+			// Track playing state
+			const onPlaying = () => setVideoPlaying(true);
+			video.addEventListener("playing", onPlaying);
 
-                {/* Desktop Video */}
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute w-full h-full object-cover hidden md:block"
-                >
-                    <source src="https://res.cloudinary.com/dcxadfbih/video/upload/v1771250084/heroVideo_gkbyfn_uxgod0.mp4" type="video/mp4" />
-                </video>
+			return () => {
+				video.removeEventListener("canplay", onCanPlay);
+				video.removeEventListener("playing", onPlaying);
+			};
+		}
+	}, [forcePlay, isDesktop]);
 
-                {/* Lightened Overlay: Changed from bg-gray-900/60 to bg-black/30 for clarity */}
-                <div className="absolute inset-0 bg-black/30 z-[1]"></div>
-            </div>
+	// On mobile, autoplay often requires a user gesture — listen for first interaction
+	useEffect(() => {
+		if (videoPlaying) return;
 
-            {/* Decorative Overlays - Lowered Opacity to show video clearly */}
-            <div className="absolute inset-0 z-[1] circuit-bg opacity-20 pointer-events-none"></div>
-            <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-black/80 pointer-events-none"></div>
+		const onInteraction = () => {
+			forcePlay();
+		};
 
-            {/* Content */}
-            <div className="container mx-auto px-4 z-10 text-center">
-                <RobotHelper
-                    position="right"
-                    variant="small"
-                    className="top-32 animate-bounce"
-                    message="Welcome to Bengal Bits!"
-                />
-                <RobotHelper position="left" variant="small" className="top-[40%]" />
+		const events = ["touchstart", "touchend", "scroll", "click", "pointerdown"];
+		events.forEach((evt) => document.addEventListener(evt, onInteraction, { once: false, passive: true }));
 
-                <div className="max-w-3xl mx-auto mt-12">
-                    <h1
-                        ref={textRef}
-                        className="text-5xl md:text-7xl font-bold mb-6 transition-transform duration-300 ease-out text-white drop-shadow-2xl"
-                    >
-                        <span className="text-blue-500">Robotorial!</span>
-                        <br />
-                        <span>Future in Motion</span>
-                    </h1>
+		return () => {
+			events.forEach((evt) => document.removeEventListener(evt, onInteraction));
+		};
+	}, [forcePlay, videoPlaying]);
 
-                    <p className="text-xl mb-8 text-white/90 max-w-xl mx-auto drop-shadow-md">
-                        Pioneering the next generation of intelligent robotics systems that
-                        reshape industries and enhance human capabilities.
-                    </p>
+	// Pause video when scrolled out of view (saves resources on mobile)
+	useEffect(() => {
+		const video = videoRef.current;
+		if (!video) return;
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSqRQe3P7xY9lPg8iN_Fk0z20sYK-Il7ETX6VZMSP2GwGWZg/viewform" target="_blank" rel="noreferrer">
-                            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">Student Enrollment Form</Button>
-                        </a>
-                        {/* <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSqRQe3P7xY9lPg8iN_Fk0z20sYK-Il7ETX6VZMSP2GwGWZg/viewform" target="_blank" rel="noreferrer">
-                            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">School Enrollment Form</Button>
-                        </a> */}
-                    </div>
-                </div>
-            </div>
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					video.play().catch(() => {});
+				} else {
+					video.pause();
+				}
+			},
+			{ threshold: 0.1 }
+		);
 
-            <div className="absolute z-10 bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-                <button
-                    onClick={scrollToProjects}
-                    className="animate-bounce flex flex-col items-center text-white/70 hover:text-blue-400 transition-colors"
-                >
-                    <span className="text-sm mb-2">Discover Our Projects</span>
-                    <ChevronDown />
-                </button>
-            </div>
-        </section>
-    );
+		observer.observe(video);
+		return () => observer.disconnect();
+	}, [isDesktop]);
+
+	// Parallax mouse effect (desktop only)
+	useEffect(() => {
+		const handleMouseMove = (e: MouseEvent) => {
+			if (!heroRef.current) return;
+
+			const { clientX, clientY } = e;
+			const { width, height } = heroRef.current.getBoundingClientRect();
+
+			const x = (clientX / width - 0.5) * 2;
+			const y = (clientY / height - 0.5) * 2;
+
+			heroRef.current.style.setProperty("--x", `${x * 5}px`);
+			heroRef.current.style.setProperty("--y", `${y * 5}px`);
+
+			if (textRef.current) {
+				textRef.current.style.transform = `translate(${x * -10}px, ${
+					y * -10
+				}px)`;
+			}
+		};
+
+		document.addEventListener("mousemove", handleMouseMove);
+		return () => document.removeEventListener("mousemove", handleMouseMove);
+	}, []);
+
+	const scrollToProjects = () => {
+		document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+	};
+
+	const videoSrc = isDesktop ? DESKTOP_VIDEO : MOBILE_VIDEO;
+	const posterSrc = isDesktop ? DESKTOP_POSTER : MOBILE_POSTER;
+
+	return (
+		<section
+			ref={heroRef}
+			id="home"
+			className="relative min-h-screen flex items-center justify-center overflow-hidden"
+			style={{
+				backgroundPosition: "calc(50% + var(--x, 0)) calc(50% + var(--y, 0))",
+			}}
+		>
+			{/* Tech Background with animated gradient */}
+			<div className="absolute inset-0 circuit-bg"></div>
+			{/* Animated gradient overlay */}
+			<div className="absolute inset-0 bg-gradient-to-b from-[rgba(var(--background),0.7)] via-transparent to-[rgb(var(--background))]"></div>
+			{/* Particle effect overlay */}
+			<div
+				className="absolute inset-0"
+				style={{
+					backgroundImage:
+						"radial-gradient(rgba(var(--primary), 0.1) 1px, transparent 1px)",
+					backgroundSize: "50px 50px",
+				}}
+			></div>
+			{/* Robot helpers */}
+			<RobotHelper
+				position="right"
+				variant="small"
+				className="top-32 animate-bounce"
+				message="Welcome to Bengal Bits!"
+			/>
+			<RobotHelper position="left" variant="small" className="top-[40%]" />
+
+			{/* Dark overlay */}
+			<div className="absolute w-screen h-screen bg-gray-900 bg-opacity-55 z-10"></div>
+
+			{/* Background video container — poster image always visible behind video */}
+			<div
+				className="absolute inset-0 z-0"
+				style={{
+					backgroundColor: "#111827",
+					backgroundImage: `url(${posterSrc})`,
+					backgroundSize: "cover",
+					backgroundPosition: "center",
+				}}
+			>
+				{/* Single video — only the correct one for screen size is mounted */}
+				<video
+					key={videoSrc} // remount when source changes
+					ref={videoRef}
+					autoPlay
+					loop
+					muted
+					playsInline
+					preload="auto"
+					poster={posterSrc}
+					className="w-full h-full object-cover"
+					style={{
+						opacity: videoPlaying ? 1 : 0,
+						transition: "opacity 0.6s ease-in",
+					}}
+				>
+					<source src={videoSrc} type="video/mp4" />
+				</video>
+			</div>
+
+			<div className="container mx-auto px-4 z-10 text-center">
+				<div className="max-w-3xl mx-auto">
+					<h1
+						ref={textRef}
+						className="text-5xl md:text-7xl font-bold mb-6 transition-transform duration-300 ease-out"
+					>
+						<span className="text-gradient">Robotorial!</span>
+						<br />
+						<span className="text-[rgb(var(--foreground))]">
+							Future in Motion
+						</span>
+					</h1>
+
+					<p className="text-xl mb-8 text-[rgb(var(--foreground))]/80 max-w-xl mx-auto">
+						Pioneering the next generation of intelligent robotics systems that
+						reshape industries and enhance human capabilities.
+					</p>
+
+					<div className="flex justify-center">
+						<a
+							href="https://forms.gle/6Ccgp2iqodxVhiXv8"
+							target="_blank"
+						>
+							<Button size="lg">Ask a Query</Button>
+						</a>
+					</div>
+				</div>
+			</div>
+			{/* Scroll down indicator */}
+			<div className="absolute z-10 bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+				<button
+					onClick={scrollToProjects}
+					className="animate-bounce flex flex-col items-center text-[rgb(var(--foreground))]/60 hover:text-[rgb(var(--primary))] transition-colors"
+				>
+					<span className="text-sm mb-2">Discover Our Projects</span>
+					<ChevronDown />
+				</button>
+			</div>
+		</section>
+	);
 };
 
+
 export default Hero;
+
