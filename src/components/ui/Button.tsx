@@ -17,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[rgb(var(--background))] glow';
+  const baseStyles = 'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[rgb(var(--background))] glow';
   
   const variantStyles = {
     primary: 'bg-[rgb(var(--primary))] hover:bg-[rgb(var(--primary))]/90 text-white focus:ring-[rgb(var(--primary))]/50',
