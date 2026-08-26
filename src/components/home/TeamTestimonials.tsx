@@ -38,6 +38,20 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 2,
+		name: "Tanya Singh",
+		position: "Co-Founder",
+		image:
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766851/TS_gq77g1.jpg",
+		testimonial:
+			"Being a part of Robotorial has been an amazing journey of learning, teamwork, and growth. Together, we’re turning ideas into something meaningful.",
+		social: {
+			github: "https://github.com",
+			linkedin: "https://linkedin.com",
+			twitter: "https://twitter.com",
+		},
+	},
+	{
+		id: 3,
 		name: "Arup Banerjee",
 		position: "Chief Technical Officer & Student Mentor",
 		image:
@@ -51,7 +65,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 3,
+		id: 4,
 		name: "Pritam Panja",
 		position: "Chief Technical Officer & Web Developer",
 		image:
@@ -65,49 +79,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 4,
-		name: "Samapti Gun",
-		position: "Student Mentor",
-		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773663521/SG_pj0srs.jpg",
-		testimonial:
-			"Helping students learn, explore, and grow through practical knowledge is what makes teaching truly rewarding.",
-		social: {
-			github: "https://github.com",
-			linkedin: "https://linkedin.com",
-			twitter: "https://twitter.com",
-		},
-	},
-	{
 		id: 5,
-		name: "Sachi Riya",
-		position: "Student Mentor",
-		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773238217/SR_alqv1k.jpg",
-		testimonial:
-			"Our goal is to support students, encourage curiosity, and help them build skills that shape their future.",
-		social: {
-			github: "https://github.com",
-			linkedin: "https://linkedin.com",
-			twitter: "https://twitter.com",
-		},
-	},
-	{
-		id: 6,
-		name: "Kriti Gupta",
-		position: "Student Mentor",
-		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773238433/KG_xqi732.jpg",
-		testimonial:
-			"Supporting students in their learning journey and watching them achieve their goals is incredibly inspiring.",
-		social: {
-			github: "https://github.com",
-			linkedin: "https://linkedin.com",
-			twitter: "https://twitter.com",
-		},
-	},
-	{
-		id: 7,
 		name: "Prithwi Biswas",
 		position: "Management Head",
 		image:
@@ -121,13 +93,41 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 8,
-		name: "Tanya Singh",
-		position: "Social Media Lead",
+		id: 6,
+		name: "Samapti Gun",
+		position: "Student Mentor",
 		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766851/TS_gq77g1.jpg",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773663521/SG_pj0srs.jpg",
 		testimonial:
-			"Builds Robotorial's digital presence by engaging the community and showcasing our innovations to a wider audience.",
+			"Helping students learn, explore, and grow through practical knowledge is what makes teaching truly rewarding.",
+		social: {
+			github: "https://github.com",
+			linkedin: "https://linkedin.com",
+			twitter: "https://twitter.com",
+		},
+	},
+	{
+		id: 7,
+		name: "Sachi Riya",
+		position: "Student Mentor",
+		image:
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773238217/SR_alqv1k.jpg",
+		testimonial:
+			"Our goal is to support students, encourage curiosity, and help them build skills that shape their future.",
+		social: {
+			github: "https://github.com",
+			linkedin: "https://linkedin.com",
+			twitter: "https://twitter.com",
+		},
+	},
+	{
+		id: 8,
+		name: "Kriti Gupta",
+		position: "Student Mentor",
+		image:
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773238433/KG_xqi732.jpg",
+		testimonial:
+			"Supporting students in their learning journey and watching them achieve their goals is incredibly inspiring.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
