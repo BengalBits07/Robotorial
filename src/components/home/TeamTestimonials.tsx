@@ -24,10 +24,10 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
 	{
 		id: 1,
-		name: "Gouranga Mondal",
+		name: "Tanisha Seal",
 		position: "CEO",
 		image:
-			"https://res.cloudinary.com/dituo1ww5/image/upload/v1745923587/IMG_20250422_111404_td3zba.jpg",
+			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766846/Tanisha_qixo9z.jpg",
 		testimonial:
 			"As the CEO, I take pride in leading a visionary team dedicated to shaping the future of robotics and AI with integrity.",
 		social: {
@@ -66,20 +66,6 @@ const teamMembers: TeamMember[] = [
 	},
 	{
 		id: 4,
-		name: "Tanisha Seal",
-		position: "Student Mentor",
-		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766846/Tanisha_qixo9z.jpg",
-		testimonial:
-			"Supporting our customers is at the heart of what we do. Ensuring their satisfaction fuels our growth and success.",
-		social: {
-			github: "https://github.com",
-			linkedin: "https://linkedin.com",
-			twitter: "https://twitter.com",
-		},
-	},
-	{
-		id: 5,
 		name: "Samapti Gun",
 		position: "Student Mentor",
 		image:
@@ -93,7 +79,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 6,
+		id: 5,
 		name: "Sachi Riya",
 		position: "Student Mentor",
 		image:
@@ -107,7 +93,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 7,
+		id: 6,
 		name: "Kriti Gupta",
 		position: "Student Mentor",
 		image:
@@ -121,7 +107,7 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 8,
+		id: 7,
 		name: "Prithwi Biswas",
 		position: "Management Head",
 		image:
@@ -135,27 +121,13 @@ const teamMembers: TeamMember[] = [
 		},
 	},
 	{
-		id: 9,
+		id: 8,
 		name: "Tanya Singh",
 		position: "Social Media Lead",
 		image:
 			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766851/TS_gq77g1.jpg",
 		testimonial:
 			"Builds Robotorial's digital presence by engaging the community and showcasing our innovations to a wider audience.",
-		social: {
-			github: "https://github.com",
-			linkedin: "https://linkedin.com",
-			twitter: "https://twitter.com",
-		},
-	},
-	{
-		id: 10,
-		name: "Shreyoshi Bodhak",
-		position: "Course Designer",
-		image:
-			"https://res.cloudinary.com/dcxadfbih/image/upload/v1773731486/SB_wmajlz.jpg",
-		testimonial:
-			"Helping students learn, explore, and grow through practical knowledge is what makes teaching truly rewarding.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
@@ -206,15 +178,14 @@ const TeamTestimonials: React.FC = () => {
 				</AnimateOnScroll>
 
 				<div className="max-w-6xl mx-auto relative">
-					<div className="relative h-[600px] overflow-hidden">
+					<div className="relative h-[450px] sm:h-[500px] md:h-[600px] overflow-hidden">
 						{teamMembers.map((member, index) => (
 							<div
 								key={member.id}
 								className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-out flex items-center
-                  ${
-										index === currentIndex
-											? "opacity-100 translate-x-0"
-											: index < currentIndex
+                  ${index === currentIndex
+										? "opacity-100 translate-x-0"
+										: index < currentIndex
 											? "opacity-0 -translate-x-full"
 											: "opacity-0 translate-x-full"
 									}`}
@@ -226,21 +197,21 @@ const TeamTestimonials: React.FC = () => {
 										<img
 											src={member.image}
 											alt={member.name}
-											className="w-full h-[400px] object-cover rounded-3xl shadow-xl"
+											className="w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover rounded-3xl shadow-xl"
 										/>
 									</div>
 
 									<div className="space-y-6">
 										<div className="space-y-2">
-											<h3 className="text-3xl font-bold text-gradient">
+											<h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gradient">
 												{member.name}
 											</h3>
-											<p className="text-xl text-[rgb(var(--foreground))]/70">
+											<p className="text-base sm:text-lg md:text-xl text-[rgb(var(--foreground))]/70">
 												{member.position}
 											</p>
 										</div>
 
-										<blockquote className="text-lg italic text-[rgb(var(--foreground))]/80 border-l-4 border-[rgb(var(--primary))] pl-6">
+										<blockquote className="text-sm sm:text-base md:text-lg italic text-[rgb(var(--foreground))]/80 border-l-4 border-[rgb(var(--primary))] pl-4 sm:pl-6">
 											"{member.testimonial}"
 										</blockquote>
 
@@ -298,16 +269,15 @@ const TeamTestimonials: React.FC = () => {
 						<ChevronRight className="w-6 h-6" />
 					</button>
 
-					<div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex gap-3">
+					<div className="absolute -bottom-8 sm:-bottom-12 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3">
 						{teamMembers.map((_, index) => (
 							<button
 								key={index}
 								onClick={() => setCurrentIndex(index)}
-								className={`w-3 h-3 rounded-full transition-all duration-300 ${
-									index === currentIndex
-										? "bg-[rgb(var(--primary))] w-8"
-										: "bg-[rgb(var(--foreground))]/30 hover:bg-[rgb(var(--foreground))]/50"
-								}`}
+								className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
+									? "bg-[rgb(var(--primary))] w-8"
+									: "bg-[rgb(var(--foreground))]/30 hover:bg-[rgb(var(--foreground))]/50"
+									}`}
 								aria-label={`Go to team member ${index + 1}`}
 							/>
 						))}
