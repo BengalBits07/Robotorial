@@ -57,7 +57,11 @@ const TABS: Tab[] = [
     color: "#34d399",
     glow: "rgba(52,211,153,0.35)",
     banners: [
-      
+      {
+        id: 1,
+        imageUrl: "https://res.cloudinary.com/dcxadfbih/image/upload/v1787769526/photo_2026-08-27_00-08-27_vdrivi.jpg",
+        title: "Ongoing Event 1",
+      },
     ],
   },
   {
@@ -299,8 +303,8 @@ const BannerCarousel: React.FC = () => {
                     {tab.key === "past"
                       ? "Past"
                       : tab.key === "ongoing"
-                      ? "Ongoing"
-                      : "Upcoming"}
+                        ? "Ongoing"
+                        : "Upcoming"}
                   </span>
                 </button>
               );
