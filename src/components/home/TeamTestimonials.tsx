@@ -43,7 +43,7 @@ const teamMembers: TeamMember[] = [
 		image:
 			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766851/TS_gq77g1.jpg",
 		testimonial:
-			"Building Robotorial from the ground up has been an incredible journey of passion, teamwork, and continuous evolution. Together, we’re not just chasing ideas—we’re turning a shared vision into something truly impactful.",
+			"Building Robotorial from the ground up has been an incredible journey. Together, we’re turning a shared vision into lasting impact.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
