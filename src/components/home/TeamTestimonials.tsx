@@ -29,7 +29,7 @@ const teamMembers: TeamMember[] = [
 		image:
 			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766846/Tanisha_qixo9z.jpg",
 		testimonial:
-			"As the CEO, I take pride in leading a visionary team dedicated to shaping the future of robotics and AI with integrity.",
+			"As CEO, I take immense pride in leading a visionary team dedicated to shaping the future of robotics and AI with integrity, purpose, and bold innovation."	,	
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
@@ -43,7 +43,7 @@ const teamMembers: TeamMember[] = [
 		image:
 			"https://res.cloudinary.com/dcxadfbih/image/upload/v1780766851/TS_gq77g1.jpg",
 		testimonial:
-			"Being a part of Robotorial has been an amazing journey of learning, teamwork, and growth. Together, we’re turning ideas into something meaningful.",
+			"Building Robotorial from the ground up has been an incredible journey of passion, teamwork, and continuous evolution. Together, we’re not just chasing ideas—we’re turning a shared vision into something truly impactful.",
 		social: {
 			github: "https://github.com",
 			linkedin: "https://linkedin.com",
