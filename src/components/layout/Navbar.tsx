@@ -18,8 +18,8 @@ const Navbar: React.FC = () => {
 	const navItems = [
 		{ label: "Home", link: "#home" },
 		{ label: "Projects", link: "#projects" },
-		{ label: "Technology", link: "#technology" },
 		{ label: "Our Gallery", link: "#our-gallery" },
+		{ label: "Technology", link: "#technology" },
 		{ label: "About Us", link: "#team-testimonials" }, // ✅ FIXED
 		{ label: "Contact", link: "#contact" },
 	];
