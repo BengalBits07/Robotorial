@@ -4,9 +4,9 @@
   "description": "Modern, engaging, and accessible landing page for Bengal Bits Robotorial training platform",
   "main": "server.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "preview": "npx vite preview",
     "start": "node server.js",
     "test": "node test.js"
   },
