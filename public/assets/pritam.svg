@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" fill="none" role="img" aria-label="Portrait of Pritam Panja, CTO & Web Developer">
+  <defs>
+    <linearGradient id="avatar-bg-pritam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="ring-pritam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#818CF8" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <clipPath id="circle-clip-pritam">
+      <circle cx="80" cy="80" r="70" />
+    </clipPath>
+  </defs>
+
+  <circle cx="80" cy="80" r="76" stroke="url(#ring-pritam)" stroke-width="2.5" stroke-dasharray="8 4" opacity="0.85" />
+  <circle cx="80" cy="80" r="70" fill="url(#avatar-bg-pritam)" />
+
+  <g clip-path="url(#circle-clip-pritam)">
+    <path d="M 120 40 L 90 70 L 50 70 L 30 100" stroke="#38BDF8" stroke-width="1.2" stroke-opacity="0.3" stroke-dasharray="3 3" />
+    <circle cx="90" cy="70" r="2.5" fill="#38BDF8" opacity="0.5" />
+
+    <!-- Shoulders & Outfit -->
+    <path d="M 26 160 C 26 124 50 114 80 114 C 110 114 134 124 134 160 Z" fill="#1E1B4B" />
+    <path d="M 70 120 L 80 135 L 90 120" stroke="#818CF8" stroke-width="2" fill="none" opacity="0.8" />
+
+    <!-- Neck & Face -->
+    <rect x="72" y="92" width="16" height="24" rx="4" fill="#EDB088" />
+    <ellipse cx="80" cy="74" rx="26" ry="32" fill="#F6C39F" />
+
+    <!-- Modern Textured Hair -->
+    <path d="M 52 68 C 50 38 60 24 80 24 C 98 24 108 36 108 68 C 102 52 98 42 80 42 C 62 42 58 52 52 68 Z" fill="#09090B" />
+    <!-- Hair quiff volume -->
+    <path d="M 60 38 C 72 26 94 28 104 36 C 96 30 84 28 72 32 Z" fill="#18181B" />
+
+    <!-- Developer Glasses -->
+    <rect x="61" y="66" width="15" height="12" rx="3" fill="none" stroke="#F59E0B" stroke-width="1.8" />
+    <rect x="84" y="66" width="15" height="12" rx="3" fill="none" stroke="#F59E0B" stroke-width="1.8" />
+    <line x1="76" y1="71" x2="84" y2="71" stroke="#F59E0B" stroke-width="1.8" />
+    <circle cx="68" cy="72" r="2.3" fill="#020617" />
+    <circle cx="91" cy="72" r="2.3" fill="#020617" />
+
+    <!-- Smile -->
+    <path d="M 73 89 Q 80 95 87 89" stroke="#9A3412" stroke-width="1.6" stroke-linecap="round" fill="none" />
+  </g>
+
+  <!-- Status indicator dot -->
+  <circle cx="126" cy="126" r="10" fill="#0B0F19" />
+  <circle cx="126" cy="126" r="7" fill="#F59E0B" />
+</svg>

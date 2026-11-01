@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 420" width="100%" height="100%" fill="none" role="img" aria-label="Autonomous Bipedal Mech Robot in Matte White with Orange XR Insignia">
+  <defs>
+    <radialGradient id="robot-shadow-w" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="body-white-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="70%" stop-color="#E5E7EB" />
+      <stop offset="100%" stop-color="#D1D5DB" />
+    </linearGradient>
+    <linearGradient id="armor-dark-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#374151" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+  </defs>
+
+  <!-- Ground Contact Shadow -->
+  <ellipse cx="170" cy="385" rx="130" ry="22" fill="url(#robot-shadow-w)" />
+  <ellipse cx="110" cy="385" rx="45" ry="12" fill="#000000" opacity="0.35" />
+  <ellipse cx="230" cy="385" rx="45" ry="12" fill="#000000" opacity="0.35" />
+
+  <!-- Robot Group -->
+  <g transform="translate(10, 10)">
+    
+    <!-- Torso Core (Faceted Angular White Armor) -->
+    <path d="M 85 90 L 120 70 L 200 70 L 235 90 L 225 185 L 195 210 L 125 210 L 95 185 Z" fill="url(#body-white-grad)" stroke="#9CA3AF" stroke-width="2" />
+    
+    <!-- Chamfered Accent Panels -->
+    <path d="M 105 95 L 125 80 L 195 80 L 215 95 L 208 175 L 112 175 Z" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1.5" />
+
+    <!-- Big Orange "XR" Emblem -->
+    <text x="160" y="150" font-family="'Space Grotesk', system-ui, sans-serif" font-size="52" font-weight="900" letter-spacing="-0.04em" fill="#FF6B00" text-anchor="middle">
+      XR
+    </text>
+    <text x="160" y="166" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" letter-spacing="0.2em" fill="#4B5563" text-anchor="middle">
+      ROBOTORIAL
+    </text>
+
+    <!-- Shoulder Armor Pauldrons -->
+    <rect x="52" y="95" width="32" height="42" rx="8" fill="url(#armor-dark-grad)" stroke="#111827" stroke-width="2" />
+    <rect x="236" y="95" width="32" height="42" rx="8" fill="url(#armor-dark-grad)" stroke="#111827" stroke-width="2" />
+    <circle cx="68" cy="116" r="5" fill="#FF6B00" />
+    <circle cx="252" cy="116" r="5" fill="#FF6B00" />
+
+    <!-- Forearm Manipulators (Hanging down) -->
+    <path d="M 60 140 L 55 220 L 75 220 L 78 140 Z" fill="#1F2937" stroke="#111827" stroke-width="2" />
+    <circle cx="65" cy="225" r="10" fill="#374151" />
+    <path d="M 260 140 L 265 220 L 245 220 L 242 140 Z" fill="#1F2937" stroke="#111827" stroke-width="2" />
+    <circle cx="255" cy="225" r="10" fill="#374151" />
+
+    <!-- Pelvis & Waist Core -->
+    <rect x="120" y="210" width="80" height="30" rx="6" fill="#1F2937" stroke="#111827" stroke-width="2" />
+    <circle cx="160" cy="225" r="6" fill="#FF6B00" />
+
+    <!-- Left Leg (Viewer's Left) -->
+    <!-- Hip Joint -->
+    <circle cx="110" cy="235" r="16" fill="#374151" stroke="#111827" stroke-width="2" />
+    <!-- Thigh (Vertical, Sturdy) -->
+    <rect x="95" y="245" width="28" height="55" rx="6" fill="#111827" stroke="#374151" stroke-width="2" />
+    <line x1="109" y1="250" x2="109" y2="295" stroke="#9CA3AF" stroke-width="3" />
+    <!-- Knee Capsule -->
+    <circle cx="109" cy="305" r="15" fill="#374151" stroke="#111827" stroke-width="2" />
+    <circle cx="109" cy="305" r="5" fill="#FF6B00" />
+    <!-- Shin & Calf -->
+    <path d="M 98 315 L 94 365 L 124 365 L 120 315 Z" fill="#1F2937" stroke="#374151" stroke-width="2" />
+    <!-- Foot Pad -->
+    <path d="M 75 375 L 135 375 L 138 365 L 90 360 Z" fill="#111827" stroke="#4B5563" stroke-width="2.5" />
+    <rect x="85" y="375" width="18" height="8" rx="2" fill="#4B5563" />
+    <rect x="110" y="375" width="18" height="8" rx="2" fill="#4B5563" />
+
+    <!-- Right Leg (Viewer's Right) -->
+    <!-- Hip Joint -->
+    <circle cx="210" cy="235" r="16" fill="#374151" stroke="#111827" stroke-width="2" />
+    <!-- Thigh -->
+    <rect x="197" y="245" width="28" height="55" rx="6" fill="#111827" stroke="#374151" stroke-width="2" />
+    <line x1="211" y1="250" x2="211" y2="295" stroke="#9CA3AF" stroke-width="3" />
+    <!-- Knee Capsule -->
+    <circle cx="211" cy="305" r="15" fill="#374151" stroke="#111827" stroke-width="2" />
+    <circle cx="211" cy="305" r="5" fill="#FF6B00" />
+    <!-- Shin & Calf -->
+    <path d="M 200 315 L 196 365 L 226 365 L 222 315 Z" fill="#1F2937" stroke="#374151" stroke-width="2" />
+    <!-- Foot Pad -->
+    <path d="M 245 375 L 185 375 L 182 365 L 230 360 Z" fill="#111827" stroke="#4B5563" stroke-width="2.5" />
+    <rect x="215" y="375" width="18" height="8" rx="2" fill="#4B5563" />
+    <rect x="190" y="375" width="18" height="8" rx="2" fill="#4B5563" />
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" fill="none" role="img" aria-label="Portrait of Tanya Singh, Co-Founder">
+  <defs>
+    <linearGradient id="avatar-bg-tanya" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E1065" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="ring-tanya" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C084FC" />
+      <stop offset="50%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#F43F5E" />
+    </linearGradient>
+    <clipPath id="circle-clip-tanya">
+      <circle cx="80" cy="80" r="70" />
+    </clipPath>
+  </defs>
+
+  <circle cx="80" cy="80" r="76" stroke="url(#ring-tanya)" stroke-width="2.5" stroke-dasharray="8 4" opacity="0.85" />
+  <circle cx="80" cy="80" r="70" fill="url(#avatar-bg-tanya)" />
+
+  <g clip-path="url(#circle-clip-tanya)">
+    <path d="M 40 40 L 70 65 L 120 65 L 140 90" stroke="#A855F7" stroke-width="1.2" stroke-opacity="0.3" stroke-dasharray="3 3" />
+    <circle cx="70" cy="65" r="2.5" fill="#A855F7" opacity="0.5" />
+
+    <!-- Shoulders & Outfit -->
+    <path d="M 28 160 C 28 126 50 116 80 116 C 110 116 132 126 132 160 Z" fill="#312E81" />
+    <path d="M 80 116 L 80 160" stroke="#C084FC" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+
+    <!-- Neck & Face -->
+    <rect x="72" y="94" width="16" height="22" rx="4" fill="#EDB088" />
+    <ellipse cx="80" cy="74" rx="25" ry="31" fill="#F6C39F" />
+
+    <!-- Hair (Stylish side part / ponytail) -->
+    <path d="M 52 74 C 50 42 64 26 82 26 C 104 26 112 44 110 74 C 108 92 108 108 116 126 C 106 122 100 110 98 94 C 98 76 96 50 84 42 C 76 36 66 38 60 48 C 56 56 58 76 56 94 C 54 110 50 120 42 126 C 50 110 50 90 52 74 Z" fill="#1C1917" />
+    <!-- Hair bun detail -->
+    <circle cx="106" cy="48" r="14" fill="#1C1917" />
+
+    <!-- Eyes -->
+    <circle cx="68" cy="73" r="2.4" fill="#1E293B" />
+    <circle cx="92" cy="73" r="2.4" fill="#1E293B" />
+    <!-- Brows -->
+    <path d="M 64 68 Q 69 66 74 68" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round" />
+    <path d="M 86 68 Q 91 66 96 68" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round" />
+
+    <!-- Smile -->
+    <path d="M 73 88 Q 80 95 87 88" stroke="#B91C1C" stroke-width="1.6" stroke-linecap="round" fill="none" />
+  </g>
+
+  <!-- Status indicator dot -->
+  <circle cx="126" cy="126" r="10" fill="#0B0F19" />
+  <circle cx="126" cy="126" r="7" fill="#8B5CF6" />
+</svg>
