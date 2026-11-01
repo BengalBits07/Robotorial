@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bengal Bits | Robotorial — Robotics &amp; Automation Platform</title>
+  <meta name="description" content="Bengal Bits presents Robotorial: pioneering the next generation of intelligent robotics systems, hands-on IoT, and automation training for college and diploma students in Budge Budge, Kolkata.">
+  <meta name="theme-color" content="#F4F4F5">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.bengalbits.com/">
+  <meta property="og:title" content="Bengal Bits | Robotorial — Future in Motion">
+  <meta property="og:description" content="Pioneering the next generation of intelligent robotics systems that reshape industries and enhance human capabilities.">
+  <meta property="og:image" content="assets/bengalbits-logo.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/bengalbits-logo.png">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandOrange: '#FF5A00',
+            brandOrangeHover: '#E04E00',
+            brandDark: '#101114',
+            brandDarkSoft: '#1C1E22',
+            canvasBg: '#F4F4F5',
+            surfaceBg: '#EBECEF',
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            tech: ['"Chakra Petch"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom Master Stylesheet -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="bg-[#F4F4F5] text-[#101114] font-sans antialiased min-h-screen relative overflow-x-hidden">
+
+  <!-- Dynamic Ambient Background Canvas -->
+  <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brandOrange focus:text-white focus:rounded-full focus:font-bold shadow-lg">
+    Skip to main content
+  </a>
+
+  <!-- ========================================================================
+       1. NAVIGATION & BRANDING
+       - Strictly uses the uploaded image as the primary 'Bengal Bits' logo
+       - Sized appropriately for a modern header, aligned to the left, links to Home
+       - Main navigation strictly includes: Home, Robotorial, Projects, Contact
+       - 'Robotorial' tab visually stands out with glowing border & active highlight
+       ======================================================================== -->
+  <header class="site-navbar w-full" role="banner">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Primary Brand Logo: Sourced directly from bengalbits.com -->
+      <a href="#hero" class="brand-bengal-bits group flex items-center gap-3 text-decoration-none" aria-label="Bengal Bits Home">
+        <div class="relative flex items-center justify-center transition-transform group-hover:scale-105">
+          <img src="assets/bengalbits-logo.png" 
+               alt="Bengal Bits Logo" 
+               class="h-11 w-11 object-contain drop-shadow-xs"
+               onerror="this.src='https://res.cloudinary.com/dncj7tesy/image/upload/v1745911137/image-removebg-preview_dffqnq.png'">
+          <span class="absolute -top-1 -right-1 h-3 w-3 bg-brandOrange rounded-full ring-2 ring-white animate-pulse" aria-hidden="true"></span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-brandDark leading-none">
+            BENGAL <span class="text-brandOrange">BITS</span>
+          </span>
+          <span class="font-mono text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-wider mt-1">
+            Robotics &amp; Automation Labs
+          </span>
+        </div>
+      </a>
+
+      <!-- Strictly Defined Main Navigation Links -->
+      <nav class="hidden md:flex items-center gap-3 lg:gap-5" aria-label="Main Navigation">
+        <!-- 1. Home -->
+        <a href="#hero" class="nav-item-link">Home</a>
+
+        <!-- 2. Robotorial (Core Hub for Robotics and Automation Club of Bengal Bits) -->
+        <a href="#robotorial-hub" class="nav-robotorial-highlight group" aria-label="Robotorial - Core Robotics and Automation Club of Bengal Bits">
+          <span class="robotorial-pulse-node" aria-hidden="true"></span>
+          <span>Robotorial</span>
+          <span class="robotorial-club-pill">CLUB</span>
+        </a>
+
+        <!-- 3. Projects -->
+        <a href="#projects" class="nav-item-link">Projects</a>
+
+        <!-- 4. Contact -->
+        <a href="#contact" class="nav-item-link">Contact</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Live Query Link (Direct from Live Site) -->
+        <a href="https://forms.gle/6Ccgp2iqodxVhiXv8" target="_blank" rel="noopener noreferrer" class="hidden lg:inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-gray-700 px-3.5 py-1.5 rounded-full border border-gray-300 bg-white hover:border-black transition-colors shadow-xs">
+          <span>ASK A QUERY</span>
+          <span>↗</span>
+        </a>
+
+        <!-- Join Workshop Pill CTA -->
+        <a href="#workshops" class="btn-orange-pill text-xs shadow-sm flex items-center gap-1.5" aria-label="Join a Workshop">
+          <span>JOIN WORKSHOP</span>
+          <span class="text-white text-xs">→</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileNavToggle" class="md:hidden p-2 rounded-lg border border-gray-300 text-gray-700 hover:text-black" aria-label="Toggle mobile menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Slide-out Navigation Drawer -->
+    <div id="mobileNavDrawer" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Mobile Navigation Drawer">
+      <div class="fixed top-0 right-0 w-[300px] h-full bg-white p-6 shadow-2xl flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-6">
+            <span class="font-display font-black text-lg">BENGAL BITS</span>
+            <button id="mobileNavClose" class="p-1 rounded-md text-gray-500 hover:text-black">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div class="text-[10px] font-mono font-bold text-gray-400 uppercase mb-4">
+            A Robotics and Automation Initiative
+          </div>
+          <nav class="flex flex-col gap-3 font-display font-bold text-gray-800">
+            <a href="#hero" class="mobile-link hover:text-brandOrange py-2 text-base">Home</a>
+            
+            <a href="#robotorial-hub" class="mobile-link flex items-center justify-between p-3 rounded-2xl bg-orange-50 border border-brandOrange text-brandOrange">
+              <span class="flex items-center gap-2">
+                <span class="robotorial-pulse-node"></span>
+                <span>Robotorial Club</span>
+              </span>
+              <span class="robotorial-club-pill">CORE</span>
+            </a>
+
+            <a href="#projects" class="mobile-link hover:text-brandOrange py-2 text-base">Projects</a>
+            <a href="#curriculum" class="mobile-link hover:text-brandOrange py-2 text-base">Training Levels</a>
+            <a href="#team" class="mobile-link hover:text-brandOrange py-2 text-base">Mentors</a>
+            <a href="#contact" class="mobile-link hover:text-brandOrange py-2 text-base">Contact</a>
+          </nav>
+        </div>
+        <div class="pt-6 border-t border-gray-200 flex flex-col gap-2.5">
+          <a href="https://forms.gle/6Ccgp2iqodxVhiXv8" target="_blank" rel="noopener noreferrer" class="btn-slanted-pill text-xs justify-center">ASK A QUERY ↗</a>
+          <a href="#workshops" class="btn-orange-pill w-full justify-center">JOIN A WORKSHOP</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN HERO SECTION (Futuristic Editorial Layout from Reference Image)
+       ======================================================================== -->
+  <main id="main-content" class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative z-10">
+
+    <div id="hero" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      
+      <!-- LEFT COLUMN: bb.labs Hero Robot Showcase Card (Span 6) -->
+      <div class="lg:col-span-6 flex flex-col justify-between reveal-on-scroll">
+        
+        <div class="showcase-surface flex-1 p-6 relative border border-[#E5E7EB] shadow-sm rounded-[24px] overflow-hidden flex flex-col justify-between min-h-[420px] bg-gradient-to-b from-[#FAFAFA] via-[#F4F4F6] to-[#E9EAED]">
+          
+          <!-- Floating Top HUD Badge: `:: bb.labs` -->
+          <div class="floating-hud-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-brandOrange"><circle cx="4" cy="4" r="2.5"/><circle cx="12" cy="4" r="2.5"/><circle cx="4" cy="12" r="2.5"/><circle cx="12" cy="12" r="2.5"/></svg>
+            <span>bb.labs • robotorial</span>
+          </div>
+
+          <!-- Hero Robot Image Provided by User -->
+          <div class="w-full flex-1 flex items-center justify-center py-4 px-2 relative z-10 mech-float-1">
+            <img src="assets/hero-robot.png?v=3" 
+                 alt="Robotorial Autonomous Mech Robot Prototype" 
+                 class="w-full max-h-[400px] sm:max-h-[440px] object-contain transition-transform duration-500 hover:scale-105 filter drop-shadow-2xl cursor-pointer">
+          </div>
+
+          <!-- Floating Bottom Tech Indicators -->
+          <div class="w-full flex items-center justify-between pt-2 relative z-10 border-t border-gray-200/60">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-brandOrange animate-pulse"></span>
+              <span class="font-mono text-[10px] text-gray-600 font-bold tracking-wider uppercase">
+                XR-ROBOTORIAL // MECH BENCH
+              </span>
+            </div>
+            <span class="font-mono text-[10px] text-brandOrange font-bold bg-white px-2.5 py-0.5 rounded-full border border-gray-200 shadow-2xs">
+              AUTONOMOUS AI
+            </span>
+          </div>
+        </div>
+
+        <!-- Pill Selector Row directly under Showcase Card -->
+        <div class="flex items-center gap-2.5 mt-4 overflow-x-auto pb-1" role="tablist" aria-label="Showcase feature views">
+          <button class="filter-tag-pill active" data-filter="style" role="tab" aria-selected="true">Style</button>
+          <button class="filter-tag-pill" data-filter="future" role="tab" aria-selected="false">Future</button>
+          <button class="filter-tag-pill" data-filter="technologies" role="tab" aria-selected="false">Technologies</button>
+          <button class="filter-tag-pill" data-filter="overview" role="tab" aria-selected="false">Overview</button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Sourced Mission from Live Bengal Bits Website -->
+      <div id="robotorial-hub" class="lg:col-span-6 bento-card p-8 lg:p-10 flex flex-col justify-between reveal-on-scroll delay-150">
+        
+        <div>
+          <!-- Robotorial Club Branding Tag -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-brandOrange/30 text-brandOrange font-mono text-[11px] font-bold mb-4">
+            <span class="robotorial-pulse-node"></span>
+            <span>A ROBOTICS AND AUTOMATION CLUB OF BENGAL BITS</span>
+          </div>
+
+          <!-- Giant Display Headline -->
+          <h1 class="display-headline mb-4">
+            THE FUTURE OF <span class="inline-block align-middle text-2xl sm:text-3xl font-mono text-gray-400 border border-gray-300 rounded-full w-9 h-9 text-center leading-[34px] -mt-2">©</span><br>
+            ROBOTICS IS HERE
+          </h1>
+
+          <!-- Technical Arrow Divider: `//Future ─────────────────>` -->
+          <div class="flex items-center gap-2 text-xs font-mono font-bold text-gray-400 mb-6">
+            <span>//Future in Motion</span>
+            <div class="h-[1.5px] bg-gray-300 flex-1 relative">
+              <span class="absolute right-0 -top-[5px] text-[10px] text-gray-400">►</span>
+            </div>
+          </div>
+
+          <!-- Sourced Live Text from bengalbits.com -->
+          <p class="manifesto-text mb-8">
+            <strong>Pioneering the next generation of intelligent robotics systems that reshape industries and enhance human capabilities.</strong> Robotorial operates as Bengal Bits' hands-on hardware and automation training arm, turning college and diploma students into creators through real microchips, sensors, and mobile rovers.
+          </p>
+
+          <!-- Button Action Group -->
+          <div class="flex flex-wrap items-center gap-3 mb-10">
+            <a href="#projects" class="btn-slanted-pill">
+              <span>Go to catalog ////</span>
+            </a>
+
+            <a href="#workshops" class="btn-black-pill">
+              <span>Join Club</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom Status Index & Circular Action Buttons -->
+        <div class="pt-6 border-t border-gray-200 flex items-end justify-between">
+          
+          <div class="flex flex-col">
+            <span class="font-display font-black text-sm text-brandOrange tracking-wide mb-1">BB</span>
+            <div class="font-mono text-[11px] font-bold text-gray-800 flex flex-col items-start leading-tight">
+              <span>01</span>
+              <span class="h-4 w-[1.5px] bg-gray-300 my-0.5 ml-1.5"></span>
+              <span class="text-gray-400">04</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <button id="btnCopyBlueprint" class="btn-circle-action" type="button" aria-label="Copy blueprint link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            </button>
+
+            <a href="#projects" class="btn-circle-action" aria-label="Scroll to projects bento grid">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+
+            <a href="#workshops" class="btn-circle-action orange-arrow" aria-label="Explore upcoming cohorts">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         2. THE 'ROBOTORIAL' SECTION (CORE HUB FOR ROBOTICS & IOT)
+         Exclusively populated with Smart Dustbin, Obstacle Avoidance Car,
+         Human Following Car, and Sensor Integration details.
+         ======================================================================== -->
+    <div id="projects" class="pt-2">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-200 reveal-on-scroll">
+        <div>
+          <span class="font-mono text-xs font-bold text-brandOrange uppercase">// ROBOTORIAL HARDWARE &amp; AUTOMATION HUB</span>
+          <h2 class="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-brandDark mt-1">
+            Hands-on Hardware &amp; Embedded Systems
+          </h2>
+        </div>
+        <span class="hidden sm:inline-block font-mono text-xs font-bold text-gray-500 bg-white border border-gray-200 px-3 py-1 rounded-full">
+          LIVE HARDWARE BENCH
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- LEFT BENTO CARD: Sourced Robotorial Hardware Hub (Span 7) -->
+        <div class="lg:col-span-7 bento-card p-6 sm:p-7 flex flex-col justify-between reveal-on-scroll">
+          <div>
+            <!-- Header Bar -->
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-gray-100 border border-gray-300 p-1 flex items-center justify-center">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-brandDark"><path d="M3 3h6v6H3V3zm2 2v2h2V5H5zm8-2h6v6h-6V3zm2 2v2h2V5h-2zM3 13h6v6H3v-6zm2 2v2h2v-2H5zm13-2h3v2h-3v-2zm-5 0h2v4h-2v-4zm2 4h4v2h-4v-2zm3 2h3v2h-3v-2zm-5 0h2v2h-2v-2z"/></svg>
+                </div>
+                <span id="specModelCode" class="font-mono text-xs font-bold text-gray-700"># BB-LV3-01</span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-green-50 text-green-700 border border-green-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5 animate-pulse"></span>
+                  BENCH TEST READY
+                </span>
+              </div>
+            </div>
+
+            <!-- Model Selectors: Specifically featuring requested systems -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <button class="model-tab-btn active text-[11px] font-mono font-bold" data-model="obstacle-car">
+                Obstacle Avoidance Car
+              </button>
+              <button class="model-tab-btn text-[11px] font-mono font-bold" data-model="smart-dustbin">
+                Smart Dustbin
+              </button>
+              <button class="model-tab-btn text-[11px] font-mono font-bold" data-model="human-following">
+                Human Following Car
+              </button>
+              <button class="model-tab-btn text-[11px] font-mono font-bold" data-model="sensor-integration">
+                Sensor Integration Hub
+              </button>
+            </div>
+
+            <!-- Active Model Title & Level Badge -->
+            <div class="mb-3">
+              <div class="flex items-center justify-between mb-1">
+                <h3 id="specModelName" class="font-display font-bold text-xl sm:text-2xl text-brandDark">
+                  Obstacle Avoidance Car
+                </h3>
+                <span id="specLevelTag" class="text-[11px] font-mono font-bold text-brandOrange bg-orange-50 border border-orange-200 px-2.5 py-0.5 rounded-full">
+                  Level 3 Advanced Robotics
+                </span>
+              </div>
+              <p id="specDescription" class="text-xs sm:text-sm text-gray-600 leading-relaxed mt-2">
+                Navigates autonomously by detecting obstacles using ultrasonic distance sensors. Reroutes motor trajectories in real time, forming the foundation of autonomous rovers.
+              </p>
+            </div>
+
+            <!-- Core Hardware Stack Pills -->
+            <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 mb-2">
+              <div class="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-2">
+                Core Hardware Components &amp; Architecture
+              </div>
+              <div id="specComponents" class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md text-[11px] font-mono text-gray-800 font-semibold shadow-2xs">Ultrasonic HC-SR04</span>
+                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md text-[11px] font-mono text-gray-800 font-semibold shadow-2xs">L298N Dual Motor Driver</span>
+                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md text-[11px] font-mono text-gray-800 font-semibold shadow-2xs">Arduino Uno</span>
+                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md text-[11px] font-mono text-gray-800 font-semibold shadow-2xs">4WD Geared Chassis</span>
+                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-md text-[11px] font-mono text-gray-800 font-semibold shadow-2xs">Micro-Servo Pan-Tilt</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Footer: Clean, No enroll kit lab, No dimensions & weight, No price -->
+          <div class="flex items-center justify-between pt-3 border-t border-gray-100 mt-2">
+            <div class="text-[11px] font-mono text-gray-500">
+              Training Arm: <strong class="text-brandDark">Robotorial Club</strong>
+            </div>
+            <a href="https://forms.gle/6Ccgp2iqodxVhiXv8" target="_blank" rel="noopener noreferrer" class="font-mono text-xs font-bold text-brandOrange hover:text-orange-600 flex items-center gap-1">
+              <span>Ask Query on this Project</span>
+              <span>↗</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- RIGHT BENTO CARD: Real Project Photo from bengalbits.com & Telemetry (Span 5) -->
+        <div class="lg:col-span-5 bento-card p-6 flex flex-col justify-between reveal-on-scroll delay-150">
+          <div>
+            <div class="flex items-center justify-between pb-2 mb-3 border-b border-gray-100">
+              <span class="font-mono text-xs font-bold text-gray-600 uppercase">// LIVE PROJECT BENCH</span>
+              <span id="specProjectStudent" class="text-[11px] font-mono text-brandOrange font-bold">LEVEL 3 ROVER BUILD</span>
+            </div>
+
+            <!-- Real Project Photo from bengalbits.com -->
+            <div class="relative w-full h-56 sm:h-64 rounded-xl overflow-hidden bg-gray-900 border border-gray-200 shadow-inner group">
+              <img id="specPreviewImg" 
+                   src="https://res.cloudinary.com/dcxadfbih/image/upload/v1786513371/ws2_q8jwhh.jpg" 
+                   alt="Obstacle Avoidance Car - Bengal Bits Project" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                   onerror="this.src='https://res.cloudinary.com/dcxadfbih/image/upload/v1768675134/img4_vkibzm.jpg'">
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent pointer-events-none"></div>
+              
+              <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs">
+                <div>
+                  <div id="specImgCaption" class="font-bold text-sm leading-tight text-white drop-shadow">
+                    Obstacle Avoidance Car • Autonomous Testing
+                  </div>
+                  <div class="text-[10px] font-mono text-gray-300">
+                    Live Workshop Lab Snapshot • Bengal Bits
+                  </div>
+                </div>
+                <span class="bg-black/60 backdrop-blur-md border border-white/20 px-2 py-0.5 rounded text-[10px] font-mono">
+                  HARDWARE
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Telemetry & Calibration Controls -->
+          <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="flex items-center bg-gray-100 rounded-full px-2.5 py-1 text-[11px] font-mono font-bold text-gray-700">
+                <span class="text-xs mr-1">⚙</span>
+                <span class="text-[9px] text-gray-500 mr-2">CALIB</span>
+                <div class="flex items-center gap-1">
+                  <button id="btnCalibMinus" aria-label="Decrease calibration" class="w-4 h-4 rounded-full bg-white flex items-center justify-center text-xs hover:bg-gray-200">−</button>
+                  <button id="btnCalibPlus" aria-label="Increase calibration" class="w-4 h-4 rounded-full bg-white flex items-center justify-center text-xs hover:bg-gray-200">+</button>
+                </div>
+              </div>
+              <span id="gaugePercentText" class="font-mono text-xs font-bold text-brandDark">
+                54% Calibration
+              </span>
+            </div>
+
+            <a href="https://forms.gle/6Ccgp2iqodxVhiXv8" target="_blank" rel="noopener noreferrer" class="btn-black-pill text-[11px] px-3.5 py-1.5">
+              <span>Ask Query ↗</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ========================================================================
+           FROM OUR GALLERY (Directly Sourced from bengalbits.com #our-gallery)
+           Real photos of students in workshops, classroom moments, and hardware projects
+           ======================================================================== -->
+      <div id="gallery" class="mt-8 pt-4">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-5 pb-2 border-b border-gray-200 reveal-on-scroll">
+          <div>
+            <span class="font-mono text-xs font-bold text-brandOrange uppercase">// BENGAL BITS &amp; ROBOTORIAL GALLERY</span>
+            <h3 class="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-brandDark mt-1">
+              From Our Gallery: Lab &amp; Workshop Moments
+            </h3>
+          </div>
+          <p class="text-xs text-gray-500 font-mono mt-1 sm:mt-0">
+            REAL STUDENTS • REAL HARDWARE • BUDGE BUDGE LABS
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Gallery Item 1: Student Project Picture (Sourced: img4_vkibzm) -->
+          <div class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-200 h-56 shadow-sm reveal-on-scroll">
+            <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1768675134/img4_vkibzm.jpg" 
+                 alt="Hardware Project Prototype - Bengal Bits" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[9px] font-mono font-bold bg-brandOrange text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Project Picture</span>
+              <h4 class="font-display font-bold text-sm mt-1 text-white">Embedded Sensor Prototype</h4>
+              <p class="text-[10px] text-gray-300 font-mono">Microcontroller &amp; Chassis Assembly</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 2: Workshop Memories (Sourced: ws1_a0ifqk) -->
+          <div class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-200 h-56 shadow-sm reveal-on-scroll delay-75">
+            <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1786513365/ws1_a0ifqk.jpg" 
+                 alt="Workshop Robotics Training - Bengal Bits" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[9px] font-mono font-bold bg-white/20 backdrop-blur-md text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Workshop Memories</span>
+              <h4 class="font-display font-bold text-sm mt-1 text-white">Hands-on Rover Assembling</h4>
+              <p class="text-[10px] text-gray-300 font-mono">Students in Active Hardware Session</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 3: Workshop Rover Testing (Sourced: ws2_q8jwhh) -->
+          <div class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-200 h-56 shadow-sm reveal-on-scroll delay-150">
+            <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1786513371/ws2_q8jwhh.jpg" 
+                 alt="Obstacle Car Live Testing - Bengal Bits" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[9px] font-mono font-bold bg-white/20 backdrop-blur-md text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Live Testing</span>
+              <h4 class="font-display font-bold text-sm mt-1 text-white">Autonomous Rover Trials</h4>
+              <p class="text-[10px] text-gray-300 font-mono">Ultrasonic Trajectory Routing</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 4: Classroom Moments (Sourced: img2_lrkvp6) -->
+          <div class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-200 h-56 shadow-sm reveal-on-scroll delay-225">
+            <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1768674124/img2_lrkvp6.jpg" 
+                 alt="Classroom Robotics Session - Bengal Bits" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[9px] font-mono font-bold bg-white/20 backdrop-blur-md text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Classroom Moments</span>
+              <h4 class="font-display font-bold text-sm mt-1 text-white">Interactive Hardware Mentoring</h4>
+              <p class="text-[10px] text-gray-300 font-mono">Circuit Wiring &amp; Code Flashing</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second row of gallery highlights -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+          <!-- Gallery Item 5: Workshop Prototyping Bench (Sourced: ws3_m6a9df) -->
+          <div class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-200 h-48 shadow-sm reveal-on-scroll">
+            <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1786513375/ws3_m6a9df.jpg" 
+                 alt="Lab Hardware Bench - Bengal Bits" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[9px] font-mono font-bold bg-white/20 backdrop-blur-md text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Lab Bench</span>
+              <h4 class="font-display font-bold text-sm mt-1 text-white">Prototyping &amp; Diagnostics</h4>
+              <p class="text-[10px] text-gray-300 font-mono">Component Interfacing</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 6: Sensor Integration Lab (Sourced: ws4_ltgsh5) -->
+          <div class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-200 h-48 shadow-sm reveal-on-scroll delay-75">
+            <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1786513380/ws4_ltgsh5.jpg" 
+                 alt="Sensors and Microcontroller Wiring - Bengal Bits" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[9px] font-mono font-bold bg-white/20 backdrop-blur-md text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Sensor Bench</span>
+              <h4 class="font-display font-bold text-sm mt-1 text-white">Sensor Calibration Lab</h4>
+              <p class="text-[10px] text-gray-300 font-mono">Real Sensor Integration</p>
+            </div>
+          </div>
+
+          <!-- Gallery Item 7: Robotics Summer Camp / Exhibition (Sourced: SummerCamp_xr2uww) -->
+          <div class="group relative rounded-2xl overflow-hidden bg-gray-900 border border-gray-200 h-48 shadow-sm reveal-on-scroll delay-150">
+            <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1780759568/SummerCamp_xr2uww.jpg" 
+                 alt="Robotics Exhibition - Bengal Bits" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+              <span class="text-[9px] font-mono font-bold bg-brandOrange text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Exhibition</span>
+              <h4 class="font-display font-bold text-sm mt-1 text-white">Robotorial Robotics Camp</h4>
+              <p class="text-[10px] text-gray-300 font-mono">Live Demo Exhibition</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         3. SOURCED REAL CURRICULUM & TRAINING LEVELS (From Live Website)
+         Extracted directly from https://www.bengalbits.com/
+         Level 1 (Intro), Level 2 (Intermediate), Level 3 (Advanced), Level 4 (IoT)
+         ======================================================================== -->
+    <section id="curriculum" class="pt-8" aria-labelledby="curriculumHeading">
+      <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 reveal-on-scroll">
+        <div>
+          <span class="font-mono text-xs font-bold text-brandOrange uppercase">// ROBOTORIAL TRAINING LEVELS</span>
+          <h2 id="curriculumHeading" class="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-brandDark mt-1">
+            Hands-on Engineering Progression
+          </h2>
+        </div>
+        <span class="hidden sm:inline-block font-mono text-xs font-bold text-gray-400">4 ACCREDITED LEVELS</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Level 1: Introduction to Robotics -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-75">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-brandOrange">LEVEL 1</span>
+              <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-2 py-0.5 rounded-full">2-4 WEEKS</span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brandDark mb-1">Introduction to Robotics</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+              Start your journey into robotics with basic concepts and hands-on projects. Perfect for beginners!
+            </p>
+            <div class="space-y-2 border-t border-gray-100 pt-3">
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Smart Fire Extinguisher
+              </div>
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Water Level Monitoring
+              </div>
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Smart Handwash Box
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-gray-100 text-[10px] font-mono text-gray-400 font-bold flex justify-between">
+            <span>SENSORS &amp; BUZZERS</span>
+            <span class="text-brandDark">MOD 1-2</span>
+          </div>
+        </div>
+
+        <!-- Level 2: Intermediate Robotics -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-150">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-brandOrange">LEVEL 2</span>
+              <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-2 py-0.5 rounded-full">3-4 WEEKS</span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brandDark mb-1">Intermediate Robotics</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+              Explore smarter systems and IoT-based projects. Start working with sensors, servos, and actuators.
+            </p>
+            <div class="space-y-2 border-t border-gray-100 pt-3">
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Smart Dustbin
+              </div>
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Automatic Rail Gate
+              </div>
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Weather Monitoring System
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-gray-100 text-[10px] font-mono text-gray-400 font-bold flex justify-between">
+            <span>SOIL &amp; SERVO DRIVERS</span>
+            <span class="text-brandDark">MOD 3</span>
+          </div>
+        </div>
+
+        <!-- Level 3: Advanced Robotics -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-225">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-brandOrange">LEVEL 3</span>
+              <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-2 py-0.5 rounded-full">3-5 WEEKS</span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brandDark mb-1">Advanced Robotics</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+              Work on complex systems integrating multiple sensors, motor bridges, and wireless communication modules.
+            </p>
+            <div class="space-y-2 border-t border-gray-100 pt-3">
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Obstacle Avoidance Car
+              </div>
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Smart Irrigation System
+              </div>
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Car Parking Management
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-gray-100 text-[10px] font-mono text-gray-400 font-bold flex justify-between">
+            <span>ROVER AUTONOMY</span>
+            <span class="text-brandDark">MOD 4</span>
+          </div>
+        </div>
+
+        <!-- Level 4: IoT and Smart Systems -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-300">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-xs font-bold text-brandOrange">LEVEL 4</span>
+              <span class="text-[10px] font-mono text-gray-500 font-bold bg-gray-100 px-2 py-0.5 rounded-full">4-6 WEEKS</span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brandDark mb-1">IoT &amp; Smart Systems</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+              Develop real-world smart systems integrating IoT, automation, computer vision, and cloud telemetry.
+            </p>
+            <div class="space-y-2 border-t border-gray-100 pt-3">
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Human Following Car
+              </div>
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Line Following Car
+              </div>
+              <div class="text-[11px] font-mono font-bold text-gray-800 flex items-center gap-1.5">
+                <span class="text-brandOrange">•</span> Arduino Pulse Sensor
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-gray-100 text-[10px] font-mono text-gray-400 font-bold flex justify-between">
+            <span>IOT &amp; CLOUD TELEMETRY</span>
+            <span class="text-brandDark">MOD 5-6</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. REAL TEAM SECTION (Directly Sourced Profiles from bengalbits.com)
+         Tanisha Seal, Tanya Singh, Arup Banerjee, Pritam Panja, Prithwi Biswas,
+         Samapti Gun, Sachi Riya, and Kriti Gupta.
+         ======================================================================== -->
+    <section id="team" class="pt-8" aria-labelledby="mentorsHeading">
+      <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 reveal-on-scroll">
+        <div>
+          <span class="font-mono text-xs font-bold text-brandOrange uppercase">// 03 CORE TEAM &amp; MENTORS</span>
+          <h2 id="mentorsHeading" class="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-brandDark mt-1">
+            Real People Building Real Tech
+          </h2>
+        </div>
+        <span class="hidden sm:inline-block font-mono text-xs font-bold text-gray-400">8 TEAM MEMBERS</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- 1. Tanisha Seal (CEO) -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-75">
+          <div>
+            <div class="w-full h-48 bg-[#EBECEF] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+              <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1780766846/Tanisha_qixo9z.jpg" onerror="this.src='assets/tanisha.svg'" alt="Tanisha Seal, CEO" class="h-full w-full object-cover">
+            </div>
+            <div class="font-mono text-[11px] font-bold text-brandOrange uppercase tracking-wide">CEO</div>
+            <h3 class="font-display font-bold text-xl text-brandDark mt-0.5 mb-2">Tanisha Seal</h3>
+            <p class="text-xs text-gray-600 italic leading-relaxed">
+              “As CEO, I take immense pride in leading a visionary team dedicated to shaping the future of robotics and AI with integrity, purpose, and bold innovation.”
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-gray-400">
+            <span>BENGAL BITS</span>
+            <span class="text-brandDark font-bold">FOUNDER</span>
+          </div>
+        </div>
+
+        <!-- 2. Tanya Singh (Co-Founder) -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-150">
+          <div>
+            <div class="w-full h-48 bg-[#EBECEF] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+              <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1780766851/TS_gq77g1.jpg" onerror="this.src='assets/tanya.svg'" alt="Tanya Singh, Co-Founder" class="h-full w-full object-cover">
+            </div>
+            <div class="font-mono text-[11px] font-bold text-brandOrange uppercase tracking-wide">CO-FOUNDER</div>
+            <h3 class="font-display font-bold text-xl text-brandDark mt-0.5 mb-2">Tanya Singh</h3>
+            <p class="text-xs text-gray-600 italic leading-relaxed">
+              “Building Robotorial from the ground up has been an incredible journey. Together, we’re turning a shared vision into lasting impact.”
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-gray-400">
+            <span>ROBOTORIAL</span>
+            <span class="text-brandDark font-bold">CO-FOUNDER</span>
+          </div>
+        </div>
+
+        <!-- 3. Arup Banerjee (Lead Student Mentor) -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-225">
+          <div>
+            <div class="w-full h-48 bg-[#EBECEF] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+              <img src="https://res.cloudinary.com/dituo1ww5/image/upload/v1745923586/arup_dclzth.jpg" onerror="this.src='assets/arup.svg'" alt="Arup Banerjee, Lead Student Mentor" class="h-full w-full object-cover">
+            </div>
+            <div class="font-mono text-[11px] font-bold text-brandOrange uppercase tracking-wide">LEAD STUDENT MENTOR</div>
+            <h3 class="font-display font-bold text-xl text-brandDark mt-0.5 mb-2">Arup Banerjee</h3>
+            <p class="text-xs text-gray-600 italic leading-relaxed">
+              “At Bengal Bits, our focus on technical excellence drives innovative solutions that redefine what's possible in automation.”
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-gray-400">
+            <span>STUDENT TRAINING</span>
+            <span class="text-brandDark font-bold">LEAD MENTOR</span>
+          </div>
+        </div>
+
+        <!-- 4. Pritam Panja (Finance Manager) -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-300">
+          <div>
+            <div class="w-full h-48 bg-[#EBECEF] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+              <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1773239052/pp2_k5yc9q.jpg" onerror="this.src='assets/pritam.svg'" alt="Pritam Panja, Finance Manager" class="h-full w-full object-cover">
+            </div>
+            <div class="font-mono text-[11px] font-bold text-brandOrange uppercase tracking-wide">FINANCE MANAGER</div>
+            <h3 class="font-display font-bold text-xl text-brandDark mt-0.5 mb-2">Pritam Panja</h3>
+            <p class="text-xs text-gray-600 italic leading-relaxed">
+              “Leading the technical vision and empowering our team to build innovative and meaningful solutions is what drives me every day.”
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-gray-400">
+            <span>FINANCIAL OPS</span>
+            <span class="text-brandDark font-bold">FINANCE</span>
+          </div>
+        </div>
+
+        <!-- 5. Prithwi Biswas (Management Head) -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-75">
+          <div>
+            <div class="w-full h-48 bg-[#EBECEF] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+              <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1780766124/PB_vsadrw.jpg" onerror="this.src='assets/tanisha.svg'" alt="Prithwi Biswas, Management Head" class="h-full w-full object-cover">
+            </div>
+            <div class="font-mono text-[11px] font-bold text-brandOrange uppercase tracking-wide">MANAGEMENT HEAD</div>
+            <h3 class="font-display font-bold text-xl text-brandDark mt-0.5 mb-2">Prithwi Biswas</h3>
+            <p class="text-xs text-gray-600 italic leading-relaxed">
+              “Ensures every Robotorial initiative is planned, coordinated, and executed smoothly from concept to completion.”
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-gray-400">
+            <span>OPERATIONS</span>
+            <span class="text-brandDark font-bold">LEAD</span>
+          </div>
+        </div>
+
+        <!-- 6. Samapti Gun (Student Mentor) -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-150">
+          <div>
+            <div class="w-full h-48 bg-[#EBECEF] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+              <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1773663521/SG_pj0srs.jpg" onerror="this.src='assets/tanya.svg'" alt="Samapti Gun, Student Mentor" class="h-full w-full object-cover">
+            </div>
+            <div class="font-mono text-[11px] font-bold text-brandOrange uppercase tracking-wide">STUDENT MENTOR</div>
+            <h3 class="font-display font-bold text-xl text-brandDark mt-0.5 mb-2">Samapti Gun</h3>
+            <p class="text-xs text-gray-600 italic leading-relaxed">
+              “Helping students learn, explore, and grow through practical knowledge is what makes teaching truly rewarding.”
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-gray-400">
+            <span>HARDWARE</span>
+            <span class="text-brandDark font-bold">MENTOR</span>
+          </div>
+        </div>
+
+        <!-- 7. Sachi Riya (Student Mentor) -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-225">
+          <div>
+            <div class="w-full h-48 bg-[#EBECEF] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+              <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1773238217/SR_alqv1k.jpg" onerror="this.src='assets/tanya.svg'" alt="Sachi Riya, Student Mentor" class="h-full w-full object-cover">
+            </div>
+            <div class="font-mono text-[11px] font-bold text-brandOrange uppercase tracking-wide">STUDENT MENTOR</div>
+            <h3 class="font-display font-bold text-xl text-brandDark mt-0.5 mb-2">Sachi Riya</h3>
+            <p class="text-xs text-gray-600 italic leading-relaxed">
+              “Our goal is to support students, encourage curiosity, and help them build skills that shape their future.”
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-gray-400">
+            <span>TRAINING</span>
+            <span class="text-brandDark font-bold">MENTOR</span>
+          </div>
+        </div>
+
+        <!-- 8. Kriti Gupta (Student Mentor) -->
+        <div class="bento-card flex flex-col justify-between reveal-on-scroll delay-300">
+          <div>
+            <div class="w-full h-48 bg-[#EBECEF] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden border border-gray-200">
+              <img src="https://res.cloudinary.com/dcxadfbih/image/upload/v1773238433/KG_xqi732.jpg" onerror="this.src='assets/tanya.svg'" alt="Kriti Gupta, Student Mentor" class="h-full w-full object-cover">
+            </div>
+            <div class="font-mono text-[11px] font-bold text-brandOrange uppercase tracking-wide">STUDENT MENTOR</div>
+            <h3 class="font-display font-bold text-xl text-brandDark mt-0.5 mb-2">Kriti Gupta</h3>
+            <p class="text-xs text-gray-600 italic leading-relaxed">
+              “Supporting students in their learning journey and watching them achieve their goals is incredibly inspiring.”
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono text-gray-400">
+            <span>STUDENT SUCCESS</span>
+            <span class="text-brandDark font-bold">MENTOR</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. REAL CONTACT & ADMISSIONS (Directly Sourced from bengalbits.com)
+         Email: robotorial.bb@gmail.com
+         Phone: +91 89021 59596
+         Address: Nischintapur, Budge Budge, Kolkata - 700 137, West Bengal, India
+         Query Form: https://forms.gle/6Ccgp2iqodxVhiXv8
+         ======================================================================== -->
+    <section id="contact" class="pt-8" aria-labelledby="contactHeading">
+      <div class="bento-card p-8 lg:p-10 reveal-on-scroll">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Contact Left -->
+          <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+            <div>
+              <span class="font-mono text-xs font-bold text-brandOrange uppercase">// OFFICIAL CONTACT &amp; LAB</span>
+              <h2 id="contactHeading" class="font-display font-black text-2xl sm:text-3xl uppercase tracking-tight text-brandDark mt-1 mb-3">
+                Contact Information
+              </h2>
+              <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                Our team is here to help you. Reach out directly for workshop enrollments, college lab setups, or student project guidance.
+              </p>
+
+              <!-- Real Contact Details from Live Site -->
+              <div class="space-y-4 font-mono text-xs">
+                <div class="flex items-start gap-3">
+                  <span class="w-8 h-8 rounded-lg bg-orange-100 text-brandOrange flex items-center justify-center font-bold text-sm flex-shrink-0">📍</span>
+                  <div>
+                    <div class="font-bold text-brandDark">Registered Office &amp; Lab</div>
+                    <div class="text-gray-500">Nischintapur, Budge Budge, Kolkata - 700 137, West Bengal, India</div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-lg bg-orange-100 text-brandOrange flex items-center justify-center font-bold text-sm flex-shrink-0">✉️</span>
+                  <div>
+                    <div class="font-bold text-gray-500 text-[10px]">Official Email</div>
+                    <a href="mailto:robotorial.bb@gmail.com" class="font-bold text-brandDark hover:text-brandOrange text-sm">
+                      robotorial.bb@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-lg bg-orange-100 text-brandOrange flex items-center justify-center font-bold text-sm flex-shrink-0">📞</span>
+                  <div>
+                    <div class="font-bold text-gray-500 text-[10px]">Direct Phone</div>
+                    <a href="tel:+918902159596" class="font-bold text-brandDark hover:text-brandOrange text-sm">
+                      +91 89021 59596
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+              <!-- Live Google Form Link -->
+              <a href="https://forms.gle/6Ccgp2iqodxVhiXv8" target="_blank" rel="noopener noreferrer" class="btn-black-pill text-xs">
+                <span>Open Google Query Form</span>
+                <span>↗</span>
+              </a>
+
+              <!-- WhatsApp Direct Link -->
+              <a href="https://wa.me/918902159596?text=Hello%20Bengal%20Bits!%20I%20am%20interested%20in%20Robotorial." target="_blank" rel="noopener noreferrer" class="btn-orange-pill text-xs">
+                <span>WhatsApp Chat</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Right: Embedded Form -->
+          <div class="lg:col-span-7">
+            <form id="clubRegistrationForm" class="space-y-4" novalidate>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="contactName" class="block font-mono text-xs font-bold text-gray-700 uppercase mb-1">Full Name *</label>
+                  <input type="text" id="contactName" name="name" required placeholder="e.g. Rahul Sen" class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm font-sans focus:bg-white focus:border-black outline-none transition-colors">
+                </div>
+                <div>
+                  <label for="contactEmail" class="block font-mono text-xs font-bold text-gray-700 uppercase mb-1">Email Address *</label>
+                  <input type="email" id="contactEmail" name="email" required placeholder="rahul@college.edu" class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm font-sans focus:bg-white focus:border-black outline-none transition-colors">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="contactPhone" class="block font-mono text-xs font-bold text-gray-700 uppercase mb-1">WhatsApp Mobile *</label>
+                  <input type="tel" id="contactPhone" name="phone" required placeholder="+91 89021 59596" class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm font-sans focus:bg-white focus:border-black outline-none transition-colors">
+                </div>
+                <div>
+                  <label for="contactCollege" class="block font-mono text-xs font-bold text-gray-700 uppercase mb-1">College / Institute</label>
+                  <input type="text" id="contactCollege" name="college" placeholder="e.g. Budge Budge Institute of Technology" class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm font-sans focus:bg-white focus:border-black outline-none transition-colors">
+                </div>
+              </div>
+
+              <div>
+                <label for="contactWorkshop" class="block font-mono text-xs font-bold text-gray-700 uppercase mb-1">Hardware Program of Interest</label>
+                <select id="contactWorkshop" name="workshop" class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm font-sans focus:bg-white focus:border-black outline-none transition-colors">
+                  <option value="general">Select a Program</option>
+                  <option value="level-1">Level 1: Introduction to Robotics (Sensors &amp; Microcontrollers)</option>
+                  <option value="level-2">Level 2: Intermediate Robotics (Smart Dustbin &amp; Actuators)</option>
+                  <option value="level-3">Level 3: Advanced Robotics (Obstacle Avoidance Car)</option>
+                  <option value="level-4">Level 4: IoT and Smart Systems (Human Following Car)</option>
+                  <option value="custom">Institutional / College Workshop Partnership</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="contactMessage" class="block font-mono text-xs font-bold text-gray-700 uppercase mb-1">Project Goals or Questions *</label>
+                <textarea id="contactMessage" name="message" rows="3" required placeholder="Tell our mentor team about your robotics goals..." class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm font-sans focus:bg-white focus:border-black outline-none transition-colors resize-none"></textarea>
+              </div>
+
+              <button type="submit" id="btnSubmitRegistration" class="btn-black-pill w-full justify-between py-3 px-6 text-sm">
+                <span>SUBMIT QUERY TO BENGAL BITS</span>
+                <span class="text-brandOrange">→</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER (Strict Industrial Minimal Aesthetic)
+       ======================================================================== -->
+  <footer class="w-full bg-white border-t border-[#E5E7EB] mt-16 py-10 relative z-10" role="contentinfo">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-gray-200">
+        <div>
+          <div class="flex items-center gap-2.5 mb-1">
+            <img src="assets/bengalbits-logo.png" 
+                 alt="Bengal Bits" 
+                 class="h-7 w-7 object-contain"
+                 onerror="this.src='https://res.cloudinary.com/dncj7tesy/image/upload/v1745911137/image-removebg-preview_dffqnq.png'">
+            <span class="font-display font-black text-xl text-brandDark">
+              BENGAL <span class="text-brandOrange">BITS</span>
+            </span>
+          </div>
+          <div class="font-mono text-xs text-gray-500 font-bold uppercase mt-1">
+            Robotorial — A Robotics and Automation Club of Bengal Bits
+          </div>
+          <div class="font-mono text-[11px] text-gray-400 mt-1">
+            Nischintapur, Budge Budge, Kolkata - 700 137, West Bengal, India
+          </div>
+        </div>
+
+        <!-- Social Pills -->
+        <div class="flex items-center gap-2">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full border border-gray-300 text-xs font-mono font-bold text-gray-700 hover:border-black transition-colors">
+            LinkedIn
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full border border-gray-300 text-xs font-mono font-bold text-gray-700 hover:border-black transition-colors">
+            GitHub
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full border border-gray-300 text-xs font-mono font-bold text-gray-700 hover:border-black transition-colors">
+            Instagram
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full border border-gray-300 text-xs font-mono font-bold text-gray-700 hover:border-black transition-colors">
+            YouTube
+          </a>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-gray-500 gap-4">
+        <div>
+          &copy; 2026 Bengal Bits. All Rights Reserved. Future in Motion.
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="mailto:robotorial.bb@gmail.com" class="hover:text-black font-bold">robotorial.bb@gmail.com</a>
+          <span>•</span>
+          <a href="#hero" class="hover:text-black font-bold">BACK TO TOP ↑</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Toast for Copy Action -->
+  <div id="actionToast" class="hidden fixed bottom-6 right-6 z-50 bg-brandDark text-white px-5 py-3 rounded-full text-xs font-mono font-bold shadow-xl items-center gap-2">
+    <span class="text-brandOrange">●</span>
+    <span>Blueprint link copied to clipboard!</span>
+  </div>
+
+  <!-- Success Modal for Admission Request -->
+  <div id="formSuccessModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl border border-gray-200 text-center">
+      <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 text-brandOrange">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h3 class="font-display font-black text-2xl text-brandDark mb-2">Query Received by Bengal Bits</h3>
+      <p class="text-sm text-gray-600 mb-6">
+        Our mentor team at Budge Budge, Kolkata will review your query and reach out on WhatsApp within 2 hours.
+      </p>
+      <button id="btnCloseSuccessModal" class="btn-black-pill w-full justify-center">
+        ACKNOWLEDGE
+      </button>
+    </div>
+  </div>
+
+  <!-- Custom Master Script -->
+  <script src="scripts/main.js"></script>
+</body>
+</html>

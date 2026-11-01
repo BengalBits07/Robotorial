@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%" fill="none" role="img" aria-label="Obstacle Avoidance Car Robotic System">
+  <defs>
+    <linearGradient id="chassis-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="radar-cone" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#A855F7" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="240" fill="#0C1322" rx="12" />
+  
+  <!-- Grid track -->
+  <line x1="20" y1="200" x2="380" y2="200" stroke="#334155" stroke-width="1.5" stroke-dasharray="6 6" />
+
+  <!-- Radar Detection Cone (Scanning Right) -->
+  <polygon points="260,110 380,50 380,170" fill="url(#radar-cone)" />
+  <path d="M 290 95 A 50 50 0 0 1 290 125" stroke="#00F2FE" stroke-width="1.8" fill="none" opacity="0.8" />
+  <path d="M 330 80 A 90 90 0 0 1 330 140" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="3 3" fill="none" opacity="0.6" />
+  <path d="M 370 65 A 130 130 0 0 1 370 155" stroke="#A855F7" stroke-width="1.5" fill="none" opacity="0.5" />
+
+  <!-- Obstacle Block Ahead -->
+  <rect x="350" y="90" width="30" height="40" rx="4" fill="#EF4444" stroke="#F87171" stroke-width="1.5" opacity="0.9" />
+  <text x="355" y="115" font-family="system-ui, sans-serif" font-size="9" fill="#FFFFFF" font-weight="700">ALERT</text>
+
+  <!-- 4WD Robotic Car Chassis -->
+  <!-- Left/Right Wheels -->
+  <rect x="90" y="70" width="35" height="18" rx="4" fill="#334155" stroke="#64748B" stroke-width="1.5" />
+  <rect x="190" y="70" width="35" height="18" rx="4" fill="#334155" stroke="#64748B" stroke-width="1.5" />
+  <rect x="90" y="142" width="35" height="18" rx="4" fill="#334155" stroke="#64748B" stroke-width="1.5" />
+  <rect x="190" y="142" width="35" height="18" rx="4" fill="#334155" stroke="#64748B" stroke-width="1.5" />
+
+  <!-- Main Acrylic / Aluminum Plate -->
+  <rect x="75" y="85" width="165" height="60" rx="10" fill="url(#chassis-grad)" stroke="#38BDF8" stroke-width="2" />
+
+  <!-- Arduino Controller Board on Top -->
+  <rect x="105" y="95" width="55" height="40" rx="3" fill="#0284C7" stroke="#38BDF8" stroke-width="1.5" />
+  <rect x="110" y="102" width="15" height="12" fill="#0F172A" />
+  <circle cx="145" cy="105" r="2.5" fill="#10B981" />
+  <circle cx="152" cy="105" r="2.5" fill="#F59E0B" />
+
+  <!-- L298N Motor Driver -->
+  <rect x="170" y="96" width="35" height="38" rx="3" fill="#991B1B" stroke="#F87171" stroke-width="1.2" />
+  <!-- Heat sink fins -->
+  <line x1="175" y1="102" x2="200" y2="102" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6" />
+  <line x1="175" y1="108" x2="200" y2="108" stroke="#FFFFFF" stroke-width="1.5" opacity="0.6" />
+
+  <!-- Front Mount Pan-Tilt Servo & HC-SR04 Sonar Eyes -->
+  <rect x="238" y="100" width="22" height="30" rx="4" fill="#0284C7" stroke="#00F2FE" stroke-width="1.5" />
+  <circle cx="249" cy="108" r="6" fill="#1E293B" stroke="#F1F5F9" stroke-width="1.5" />
+  <circle cx="249" cy="122" r="6" fill="#1E293B" stroke="#F1F5F9" stroke-width="1.5" />
+  <circle cx="249" cy="108" r="2" fill="#00F2FE" />
+  <circle cx="249" cy="122" r="2" fill="#00F2FE" />
+
+  <!-- Telemetry readout -->
+  <text x="30" y="45" font-family="system-ui, sans-serif" font-size="12" fill="#38BDF8" font-weight="700">AUTONOMOUS ROVER v2.4</text>
+  <text x="30" y="62" font-family="system-ui, sans-serif" font-size="10" fill="#10B981">Obstacle Dist: 24cm • Action: STEER_LEFT(35°)</text>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 220" width="60" height="220" fill="none" role="img" aria-label="Industrial Chevron Tread Pattern">
+  <defs>
+    <linearGradient id="chev-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9CA3AF" />
+      <stop offset="100%" stop-color="#6B7280" />
+    </linearGradient>
+  </defs>
+
+  <!-- Repeated Technical Chevron Blocks -->
+  <g fill="url(#chev-grad)">
+    <!-- 1 -->
+    <path d="M 8 10 L 32 30 L 52 30 L 28 10 Z" />
+    <path d="M 52 10 L 28 30 L 8 30 L 32 10 Z" opacity="0.3" />
+    <!-- 2 -->
+    <path d="M 8 45 L 32 65 L 52 65 L 28 45 Z" />
+    <path d="M 52 45 L 28 65 L 8 65 L 32 45 Z" opacity="0.3" />
+    <!-- 3 -->
+    <path d="M 8 80 L 32 100 L 52 100 L 28 80 Z" />
+    <path d="M 52 80 L 28 100 L 8 100 L 32 80 Z" opacity="0.3" />
+    <!-- 4 -->
+    <path d="M 8 115 L 32 135 L 52 135 L 28 115 Z" />
+    <path d="M 52 115 L 28 135 L 8 135 L 32 115 Z" opacity="0.3" />
+    <!-- 5 -->
+    <path d="M 8 150 L 32 170 L 52 170 L 28 150 Z" />
+    <path d="M 52 150 L 28 170 L 8 170 L 32 150 Z" opacity="0.3" />
+    <!-- 6 -->
+    <path d="M 8 185 L 32 205 L 52 205 L 28 185 Z" />
+    <path d="M 52 185 L 28 205 L 8 205 L 32 185 Z" opacity="0.3" />
+  </g>
+</svg>

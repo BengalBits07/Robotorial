@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="320" height="60" fill="none" role="img" aria-label="Robotorial - A Robotics and Automation Club of Bengal Bits">
+  <defs>
+    <linearGradient id="orange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#FA5A1E" />
+    </linearGradient>
+  </defs>
+
+  <!-- Robotorial Tech Emblem (Mechanical Quad-Node) -->
+  <g transform="translate(6, 10)">
+    <rect x="0" y="0" width="38" height="38" rx="8" fill="#111111" />
+    <!-- Angular cut lines -->
+    <path d="M 12 19 L 26 19 M 19 12 L 19 26" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+    <circle cx="19" cy="19" r="4" fill="#FF6B00" />
+    <circle cx="9" cy="9" r="2" fill="#FFFFFF" opacity="0.6" />
+    <circle cx="29" cy="9" r="2" fill="#FFFFFF" opacity="0.6" />
+    <circle cx="9" cy="29" r="2" fill="#FFFFFF" opacity="0.6" />
+    <circle cx="29" cy="29" r="2" fill="#FFFFFF" opacity="0.6" />
+    <!-- Diagonal bracket accents -->
+    <path d="M 4 12 L 4 4 L 12 4" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" fill="none" />
+    <path d="M 34 26 L 34 34 L 26 34" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" fill="none" />
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(56, 12)">
+    <text x="0" y="20" font-family="'Space Grotesk', system-ui, sans-serif" font-size="20" font-weight="900" letter-spacing="-0.03em" fill="#111111">
+      ROBOTORIAL
+    </text>
+    <text x="0" y="34" font-family="'JetBrains Mono', 'Space Grotesk', monospace" font-size="8" font-weight="700" letter-spacing="0.08em" text-transform="uppercase" fill="#6B7280">
+      A Robotics and Automation Club of Bengal Bits
+    </text>
+  </g>
+</svg>
